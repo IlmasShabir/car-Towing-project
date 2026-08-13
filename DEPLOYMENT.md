@@ -204,7 +204,7 @@ Replace both domains and your email, then run:
 ```bash
 docker compose run --rm certbot certonly --webroot -w /var/www/certbot \
   -d dubaicartowingservice.com -d www.dubaicartowingservice.com \
-  --email kami302716@gmail.com --agree-tos --no-eff-email
+  --email almasshabir967@gmail.com --agree-tos --no-eff-email
 ```
 
 Wait for `Successfully received certificate`.
