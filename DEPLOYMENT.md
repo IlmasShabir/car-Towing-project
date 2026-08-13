@@ -76,7 +76,7 @@ In your domain registrar's DNS panel, add two records:
 Then wait a few minutes and check (run this **on the server**):
 
 ```bash
-dig +short dubaicartowingservice.com
+dig +short wwwdubaicartowingservice.com
 ```
 
 **It must print your server IP.** If it prints nothing, wait longer and run it again.
@@ -121,7 +121,7 @@ MONGO_ROOT_PASSWORD=PASTE_MONGO_PASSWORD_HERE
 
 PORT=5000
 JWT_SECRET=PASTE_JWT_SECRET_HERE
-CLIENT_URL=https://dubaicartowingservice.com
+CLIENT_URL=https://wwwdubaicartowingservice.com
 
 ADMIN_USERNAME=admin
 ADMIN_PASSWORD=PASTE_ADMIN_PASSWORD_HERE
@@ -176,7 +176,7 @@ Back on the server:
 
 ```bash
 cd /root/app
-sed -i 's/yourdomain\.com/dubaicartowingservice.com/g' nginx/default.conf
+sed -i 's/yourdomain\.com/wwwdubaicartowingservice.com/g' nginx/default.conf
 ```
 
 Start everything:
@@ -193,7 +193,7 @@ curl localhost/health
 
 You should see `{"ok":true}`.
 
-Open `http://dubaicartowingservice.com` in your browser — the site should load (no padlock yet).
+Open `http://wwwdubaicartowingservice.com` in your browser — the site should load (no padlock yet).
 
 ---
 
@@ -203,7 +203,7 @@ Replace both domains and your email, then run:
 
 ```bash
 docker compose run --rm --entrypoint certbot certbot certonly --webroot -w /var/www/certbot \
-  -d dubaicartowingservice.com -d www.dubaicartowingservice.com \
+  -d wwwdubaicartowingservice.com -d www.wwwdubaicartowingservice.com \
   --email almasshabir967@gmail.com --agree-tos --no-eff-email
 ```
 
@@ -228,7 +228,7 @@ Save (**Ctrl+O**, **Enter**, **Ctrl+X**), then:
 docker compose restart nginx
 ```
 
-Visit `https://dubaicartowingservice.com` — you should now see a padlock.
+Visit `https://wwwdubaicartowingservice.com` — you should now see a padlock.
 
 Certificates renew automatically. Nothing more to do.
 
@@ -316,7 +316,7 @@ Usually a wrong value in `.env`. Fix it, then `docker compose up -d`.
 Your DNS isn't ready. Check:
 
 ```bash
-dig +short dubaicartowingservice.com
+dig +short wwwdubaicartowingservice.com
 ```
 
 If it doesn't print your server IP, wait and retry. Let's Encrypt blocks you after
@@ -369,7 +369,7 @@ cd /root/app && grep ADMIN .env
 
 # Before going live
 
-- [ ] Replace `dubaicartowingservice.com` in `client/index.html` (5 places) — link previews on
+- [ ] Replace `wwwdubaicartowingservice.com` in `client/index.html` (5 places) — link previews on
       WhatsApp/Facebook stay broken until you do
 - [ ] Log into the admin dashboard and change the default admin username
 - [ ] Run `/root/backup.sh` once to confirm backups work
