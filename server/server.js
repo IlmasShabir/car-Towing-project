@@ -36,6 +36,8 @@ app.get('/', (req, res) => {
   res.send('Usama Towing Service API is running');
 });
 
+app.get('/health', (req, res) => res.json({ ok: true }));
+
 app.use('/api/bookings', bookingRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/reviews', reviewRoutes);
@@ -49,4 +51,4 @@ app.use((err, req, res, next) => {
 });
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, '0.0.0.0', () => console.log(`Server running on port ${PORT}`));
