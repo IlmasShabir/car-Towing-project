@@ -1,7 +1,7 @@
 # Deployment — Copy & Paste Steps
 
 Do these in order. Each block is copy-paste. Where you must type your own value,
-it looks like `YOUR_SERVER_IP` or `yourdomain.com`.
+it looks like `YOUR_SERVER_IP`.
 
 **You keep logging in with your Contabo password.** Nothing here changes that.
 The one SSH key created in Step 8 is used only by GitHub, not by you.
@@ -76,7 +76,7 @@ In your domain registrar's DNS panel, add two records:
 Then wait a few minutes and check (run this **on the server**):
 
 ```bash
-dig +short yourdomain.com
+dig +short dubaicartowingservice.com
 ```
 
 **It must print your server IP.** If it prints nothing, wait longer and run it again.
@@ -113,7 +113,7 @@ Now create the file:
 nano .env
 ```
 
-Paste this in, replacing the four `PASTE_...` values and `yourdomain.com`:
+Paste this in, replacing the `PASTE_...` values:
 
 ```
 MONGO_ROOT_USER=towing
@@ -121,7 +121,7 @@ MONGO_ROOT_PASSWORD=PASTE_MONGO_PASSWORD_HERE
 
 PORT=5000
 JWT_SECRET=PASTE_JWT_SECRET_HERE
-CLIENT_URL=https://yourdomain.com
+CLIENT_URL=https://dubaicartowingservice.com
 
 ADMIN_USERNAME=admin
 ADMIN_PASSWORD=PASTE_ADMIN_PASSWORD_HERE
@@ -176,10 +176,8 @@ Back on the server:
 
 ```bash
 cd /root/app
-sed -i 's/yourdomain\.com/YOURDOMAIN.COM/g' nginx/default.conf
+sed -i 's/yourdomain\.com/dubaicartowingservice.com/g' nginx/default.conf
 ```
-
-Replace `YOURDOMAIN.COM` with your real domain in that command.
 
 Start everything:
 
@@ -195,7 +193,7 @@ curl localhost/health
 
 You should see `{"ok":true}`.
 
-Open `http://yourdomain.com` in your browser — the site should load (no padlock yet).
+Open `http://dubaicartowingservice.com` in your browser — the site should load (no padlock yet).
 
 ---
 
@@ -205,8 +203,8 @@ Replace both domains and your email, then run:
 
 ```bash
 docker compose run --rm certbot certonly --webroot -w /var/www/certbot \
-  -d yourdomain.com -d www.yourdomain.com \
-  --email you@gmail.com --agree-tos --no-eff-email
+  -d dubaicartowingservice.com -d www.dubaicartowingservice.com \
+  --email kami302716@gmail.com --agree-tos --no-eff-email
 ```
 
 Wait for `Successfully received certificate`.
@@ -230,7 +228,7 @@ Save (**Ctrl+O**, **Enter**, **Ctrl+X**), then:
 docker compose restart nginx
 ```
 
-Visit `https://yourdomain.com` — you should now see a padlock.
+Visit `https://dubaicartowingservice.com` — you should now see a padlock.
 
 Certificates renew automatically. Nothing more to do.
 
@@ -318,7 +316,7 @@ Usually a wrong value in `.env`. Fix it, then `docker compose up -d`.
 Your DNS isn't ready. Check:
 
 ```bash
-dig +short yourdomain.com
+dig +short dubaicartowingservice.com
 ```
 
 If it doesn't print your server IP, wait and retry. Let's Encrypt blocks you after
@@ -371,7 +369,7 @@ cd /root/app && grep ADMIN .env
 
 # Before going live
 
-- [ ] Replace `yourdomain.com` in `client/index.html` (5 places) — link previews on
+- [ ] Replace `dubaicartowingservice.com` in `client/index.html` (5 places) — link previews on
       WhatsApp/Facebook stay broken until you do
 - [ ] Log into the admin dashboard and change the default admin username
 - [ ] Run `/root/backup.sh` once to confirm backups work

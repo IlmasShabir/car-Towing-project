@@ -37,6 +37,8 @@ services:
     depends_on:
       - client
       - server
+    # Reload daily so a renewed certificate gets picked up without a manual restart.
+    command: /bin/sh -c 'while :; do sleep 24h; nginx -s reload; done & nginx -g "daemon off;"'
 
   certbot:
     image: certbot/certbot
