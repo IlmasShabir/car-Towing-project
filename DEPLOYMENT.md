@@ -66,7 +66,9 @@ You should see a version number.
 
 ## Step 5 — Point your domain at the server
 
-In your domain registrar's DNS panel, add two records:
+In Cloudflare's DNS panel, add two records. **The cloud icon must be grey ("DNS
+only"), not orange** — an orange cloud makes Cloudflare answer HTTP itself and
+Step 11 will fail.
 
 | Type | Name  | Value            |
 |------|-------|------------------|
@@ -170,18 +172,12 @@ In your browser: your repo → **Settings** → **Secrets and variables** → **
 
 ---
 
-## Step 10 — Set your domain and start the site
+## Step 10 — Start the site
 
 Back on the server:
 
 ```bash
 cd /root/app
-sed -i 's/yourdomain\.com/wwwdubaicartowingservice.com/g' nginx/default.conf
-```
-
-Start everything:
-
-```bash
 docker compose up -d --build
 ```
 
@@ -199,8 +195,6 @@ Open `http://wwwdubaicartowingservice.com` in your browser — the site should l
 
 ## Step 11 — Turn on HTTPS
 
-Replace both domains and your email, then run:
-
 ```bash
 docker compose run --rm --entrypoint certbot certbot certonly --webroot -w /var/www/certbot \
   -d wwwdubaicartowingservice.com -d www.wwwdubaicartowingservice.com \
@@ -209,24 +203,16 @@ docker compose run --rm --entrypoint certbot certbot certonly --webroot -w /var/
 
 Wait for `Successfully received certificate`.
 
-Now switch nginx over to HTTPS:
+Now switch nginx over to HTTPS. Say so and the HTTPS config gets committed to the
+repo, then on the server:
 
 ```bash
-nano nginx/default.conf
+git pull origin main && docker compose restart nginx
 ```
 
-Two edits in this file:
-
-1. Find the block with `# location / {` and `# return 301 https://...` near the top.
-   Delete the `# ` at the start of those 3 lines.
-2. Everything below `# --- STEP 2: uncomment this whole block` at the bottom:
-   delete the `# ` from the start of every line.
-
-Save (**Ctrl+O**, **Enter**, **Ctrl+X**), then:
-
-```bash
-docker compose restart nginx
-```
+> Don't edit `nginx/default.conf` on the server. Local edits to tracked files make
+> the next auto-deploy fail with *"local changes would be overwritten by merge"*.
+> If that happens: `git checkout -- nginx/default.conf` then `git pull`.
 
 Visit `https://wwwdubaicartowingservice.com` — you should now see a padlock.
 
@@ -369,8 +355,6 @@ cd /root/app && grep ADMIN .env
 
 # Before going live
 
-- [ ] Replace `wwwdubaicartowingservice.com` in `client/index.html` (5 places) — link previews on
-      WhatsApp/Facebook stay broken until you do
 - [ ] Log into the admin dashboard and change the default admin username
 - [ ] Run `/root/backup.sh` once to confirm backups work
 - [ ] Compress `client/src/assets/images/logo.png` and `tow-truck-dubai.jpg` —
