@@ -1,0 +1,253 @@
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 160px 60px 60px;
+  position: relative;
+  font-family: 'Poppins', sans-serif;
+
+  /* Background photo only — no dark overlay across the whole image */
+  background: url("../assets/images/bg2.png") center/cover no-repeat;
+}
+
+/* Soft dark fade on the LEFT ONLY, so the heading text stays readable
+   while the right side of the photo (truck/skyline) stays clear/sharp. */
+.hero-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(6, 9, 20, 0.88) 0%,
+    rgba(6, 9, 20, 0.55) 32%,
+    rgba(6, 9, 20, 0.1) 55%,
+    transparent 70%
+  );
+  z-index: 0;
+}
+
+/* Keep actual content above the fade */
+.hero-left,
+.hero-right {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- LEFT CONTENT ---------- */
+
+.hero-left {
+  flex: 1;
+  max-width: 560px;
+}
+
+.anim-item {
+  opacity: 0;
+  transform: translateX(-60px);
+  animation: slideInLeft 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes slideInLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.delay-1 { animation-delay: 1.1s; }
+.delay-2 { animation-delay: 1.3s; }
+.delay-3 { animation-delay: 1.55s; }
+.delay-4 { animation-delay: 1.8s; }
+
+.hero-eyebrow {
+  color: #f5b400;
+  font-weight: 600;
+  font-size: 13.5px;
+  letter-spacing: 1px;
+  margin-bottom: 14px;
+}
+
+.hero-heading {
+  color: #ffffff;
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1.15;
+  margin: 0 0 26px 0;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+}
+
+.hero-heading .highlight {
+  color: #f5b400;
+}
+
+.hero-subtext {
+  display: none; /* only shown on mobile, see media query below */
+  color: #d6d9e0;
+  font-size: 13.5px;
+  margin: -14px 0 18px;
+}
+
+/* Framed truck photo - hidden on desktop (the full-section background
+   photo already does that job there). Shown only on mobile, where an
+   <img> with object-fit crops predictably at every screen width,
+   instead of a full-bleed background whose crop shifts unpredictably
+   as the section's height changes with content. */
+.hero-framed-img {
+  display: none;
+}
+
+.hero-cta-group {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 46px;
+}
+
+.btn-call,
+.btn-whatsapp {
+  padding: 13px 26px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 14.5px;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-call {
+  background: #f5b400;
+  color: #0a0e1a;
+}
+
+.btn-whatsapp {
+  background: rgba(6, 9, 20, 0.4);
+  color: #ffffff;
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+}
+
+.btn-call:hover,
+.btn-whatsapp:hover {
+  transform: translateY(-2px);
+}
+
+.hero-stats {
+  display: flex;
+  gap: 34px;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-number {
+  color: #f5b400;
+  font-size: 19px;
+  font-weight: 800;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.stat-label {
+  color: #e2e4ea;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+
+/* ---------- RIGHT CONTENT (booking form) ---------- */
+
+.hero-right {
+  flex: 1;
+  max-width: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-booking-wrapper {
+  width: 100%;
+}
+
+/* =====================================================
+   MOBILE / TABLET (<= 1100px)
+   - Background photo is replaced with a solid dark color
+     (the framed <img> above shows the truck photo instead)
+   - Everything stacks in one column, in normal document
+     flow: heading -> photo -> buttons -> stats -> form
+   - Nothing overlaps or floats over the photo anymore
+   ===================================================== */
+@media (max-width: 1100px) {
+  .hero-section {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 130px 20px 50px;
+    text-align: center;
+    gap: 0;
+
+    /* Solid background instead of the stretched photo - the framed
+       <img> below now shows the truck photo instead, and crops
+       consistently at every screen size via object-fit: cover. */
+    background: linear-gradient(160deg, #060a14 0%, #0d1526 60%, #141d33 100%);
+  }
+
+  /* The left-fade overlay was only needed for the photo background;
+     with a solid background on mobile it's not needed. */
+  .hero-section::before {
+    display: none;
+  }
+
+  .hero-left {
+    max-width: 100%;
+  }
+
+  .hero-subtext {
+    display: block;
+  }
+
+
+  .hero-cta-group,
+  .hero-stats {
+    justify-content: center;
+  }
+
+  .hero-stats {
+    gap: 22px 28px;
+    margin-bottom: 8px;
+  }
+
+  .anim-item {
+    transform: translateY(24px);
+  }
+
+  /* Booking form: normal flow, full width, clearly below everything
+     above it - never overlaps the photo or the stats. */
+  .hero-right {
+    max-width: 100%;
+    margin-top: 34px;
+  }
+}
+
+@media (max-width: 500px) {
+  .hero-section{
+    background:url("../assets/images/mobile_bg.jpeg") center/cover no-repeat;
+  }
+  .hero-heading {
+    font-size: 36px;
+  }
+  .hero-eyebrow {
+    font-size: 13.5px;
+  }
+  .hero-subtext {
+    font-size: 12.5px;
+  }
+
+  .hero-stats {
+    justify-content: space-between;
+    gap: 16px 10px;
+  }
+
+  .stat-item {
+    align-items: center;
+    flex: 0 1 40%;
+  }
+}

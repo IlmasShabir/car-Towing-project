@@ -1,0 +1,50 @@
+.review-card {
+  background: #ffffff;
+  border: 1px solid #eef0f4;
+  border-radius: 14px;
+  padding: 24px 22px;
+  box-shadow: 0 6px 18px rgba(10, 14, 26, 0.05);
+}
+
+.review-card-dark {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.review-stars {
+  color: #f5b400;
+  font-size: 15px;
+  margin-bottom: 10px;
+  letter-spacing: 2px;
+}
+
+.review-text {
+  color: #494f5c;
+  font-size: 13.5px;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.review-card-dark .review-text {
+  color: #d6d9e0;
+}
+
+.review-author {
+  display: flex;
+  flex-direction: column;
+}
+
+.review-name {
+  color: #0a0e1a;
+  font-weight: 700;
+  font-size: 13.5px;
+}
+
+.review-card-dark .review-name {
+  color: #ffffff;
+}
+
+.review-location {
+  color: #9a9fac;
+  font-size: 12px;
+}

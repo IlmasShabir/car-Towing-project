@@ -1,0 +1,141 @@
+.booking-form-card {
+  width: 300px;
+  max-width: 100%;
+  margin: 0 auto; /* keeps the card centered inside its wrapper at every screen size */
+ 
+  backdrop-filter:blur(4px);
+  border: 1px solid #eef0f4;
+  border-radius: 16px;
+  padding: 26px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 20px 50px rgba(10, 14, 26, 0.25);
+  font-family: 'Poppins', sans-serif;
+
+  /* Entrance animation: slides in from the right, starts after 2s
+     (1s after the navbar/truck animation begins) */
+  opacity: 0;
+  transform: translateX(120px);
+  animation: formSlideInRight 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: 2s;
+}
+
+@keyframes formSlideInRight {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.booking-form-title {
+  color: #ffffff;
+  font-size: 19px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.booking-form-subtitle {
+  color: #ffffff;
+  font-size: 12.5px;
+  margin: -6px 0 6px 0;
+}
+
+.booking-form-card input,
+.booking-form-card select {
+  border: 1px solid #e1e5eb;
+  border-radius: 8px;
+  padding: 11px 12px;
+  color: #0a0e1a;
+  font-size: 13.5px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.booking-form-card input::placeholder {
+  color: #9a9fac;
+}
+
+.booking-form-card input:focus,
+.booking-form-card select:focus {
+  border-color: #f5b400;
+}
+
+.booking-form-card select option {
+  
+  color: #0a0e1a;
+}
+
+.booking-form-submit {
+  margin-top: 6px;
+  background: #f5b400;
+  color: #0a0e1a;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.booking-form-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(245, 180, 0, 0.35);
+}
+
+.booking-form-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.booking-form-error {
+  color: #d64545;
+  font-size: 12.5px;
+  margin: -4px 0 0 0;
+}
+
+.booking-form-success {
+  align-items: flex-start;
+  text-align: left;
+  gap: 10px;
+}
+
+.booking-form-success h3 {
+  color: #0a0e1a;
+  font-size: 19px;
+}
+
+.booking-form-success p {
+  color: #7a7f8c;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.booking-form-whatsapp-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  background: #25d366;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 13.5px;
+  padding: 11px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+  box-sizing: border-box;
+}
+
+.booking-form-whatsapp-btn:hover {
+  transform: translateY(-2px);
+}
+
+@media (max-width: 900px) {
+  .booking-form-card {
+    width: 100%;
+    max-width: 340px;
+  }
+}
+

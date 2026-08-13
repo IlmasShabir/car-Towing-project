@@ -1,0 +1,27 @@
+.page-header {
+  padding: 150px 60px 40px;
+  background: linear-gradient(120deg, #060a14 0%, #0d1526 55%, #1a2440 100%);
+}
+
+.page-header h1 {
+  color: #ffffff;
+  font-size: 30px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.page-header .breadcrumb {
+  color: #9a9fac;
+  font-size: 13px;
+}
+
+.page-header .breadcrumb a {
+  color: #f5b400;
+  text-decoration: none;
+}
+
+@media (max-width: 700px) {
+  .page-header {
+    padding: 130px 24px 30px;
+  }
+}

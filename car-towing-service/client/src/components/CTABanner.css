@@ -1,0 +1,101 @@
+.cta-banner h3 {
+  color: #ffffff;
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+
+.cta-banner p {
+  color: #b7bcc9;
+  font-size: 13px;
+}
+
+.cta-btn-primary {
+  display: inline-block;
+  background: #f5b400;
+  color: #0a0e1a;
+  font-weight: 700;
+  font-size: 13.5px;
+  padding: 11px 22px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cta-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(245, 180, 0, 0.3);
+}
+
+.cta-btn-outline {
+  display: inline-block;
+  background: transparent;
+  color: #ffffff;
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  font-weight: 700;
+  font-size: 13.5px;
+  padding: 10px 22px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.cta-btn-outline:hover {
+  transform: translateY(-2px);
+}
+
+/* Card variant: used beside testimonials */
+.cta-card {
+  background: linear-gradient(135deg, #1a2440, #0d1526);
+  border: 1px solid rgba(245, 180, 0, 0.25);
+  border-radius: 16px;
+  padding: 32px 28px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.cta-bullets {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cta-bullets li {
+  color: #d6d9e0;
+  font-size: 13px;
+}
+
+.cta-card .cta-btn-primary {
+  margin-top: auto;
+  text-align: center;
+}
+
+/* Bar variant: full-width strip used on inner pages */
+.cta-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  background: linear-gradient(90deg, #0d1526, #1a2440);
+  border-radius: 14px;
+  padding: 28px 40px;
+  margin: 50px auto;
+  max-width: 1200px;
+}
+
+.cta-bar-actions {
+  display: flex;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 700px) {
+  .cta-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px;
+  }
+}
