@@ -202,7 +202,7 @@ Open `http://dubaicartowingservice.com` in your browser — the site should load
 Replace both domains and your email, then run:
 
 ```bash
-docker compose run --rm certbot certonly --webroot -w /var/www/certbot \
+docker compose run --rm --entrypoint certbot certbot certonly --webroot -w /var/www/certbot \
   -d dubaicartowingservice.com -d www.dubaicartowingservice.com \
   --email almasshabir967@gmail.com --agree-tos --no-eff-email
 ```
@@ -334,7 +334,7 @@ You probably missed a `# ` when uncommenting, or the domain in the file doesn't 
 the certificate. Confirm the certificate name:
 
 ```bash
-docker compose run --rm certbot certificates
+docker compose run --rm --entrypoint certbot certbot certificates
 ```
 
 ---
