@@ -25,8 +25,8 @@ const Hero = () => {
        
 
         <div className="hero-cta-group anim-item delay-3">
-          <a href="tel:+971524242587" className="btn-call">📞 Call Now</a>
-          <a href="https://wa.me/971524242587" className="btn-whatsapp">💬 WhatsApp Us</a>
+          <a href="tel:+971586729393" className="btn-call">📞 Call Now</a>
+          <a href="https://wa.me/+971586729393" className="btn-whatsapp">💬 WhatsApp Us</a>
         </div>
 
         <div className="hero-stats anim-item delay-4">
