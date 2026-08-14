@@ -2,48 +2,36 @@
    NAVBAR
 ================================ */
 
-.navbar-custom {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
+.navbar-custom { 
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  z-index: 100; 
 
-  height: 76px;
-  padding: 0 60px;
+  height: 76px; 
+  padding: 0 60px; 
 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
 
-  background: linear-gradient(
-    180deg,
-    rgba(6, 9, 20, 0.97) 0%,
-    rgba(6, 9, 20, 0.90) 100%
-  );
+  background: linear-gradient( 
+    180deg, 
+    rgba(6, 9, 20, 0.97) 0%, 
+    rgba(6, 9, 20, 0.90) 100% 
+  ); 
 
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px); 
 
-  font-family: "Poppins", sans-serif;
-
-  /* Entrance animation */
-  opacity: 0;
-  transform: translateY(-90px);
-  animation: navSlideDown 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  animation-delay: 1s;
+  font-family: "Poppins", sans-serif; 
 }
-
 
 /* ================================
    NAVBAR ANIMATION
 ================================ */
 
-@keyframes navSlideDown {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+
 
 
 /* ================================
