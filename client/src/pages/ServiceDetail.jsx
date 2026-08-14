@@ -59,8 +59,8 @@ const ServiceDetail = () => {
                 <li key={f}>✓ {f}</li>
               ))}
             </ul>
-            <a href="tel:+971524242587" className="service-detail-cta">
-              📞 Call Now: +971 52 424 2587
+            <a href="tel:+971586729393" className="service-detail-cta">
+              📞 Call Now: +971586729393
             </a>
           </Reveal>
         </div>
