@@ -78,10 +78,11 @@ Step 11 will fail.
 Then wait a few minutes and check (run this **on the server**):
 
 ```bash
-dig +short wwwdubaicartowingservice.com
+dig +short cartowingservicedubai.com
+dig +short www.cartowingservicedubai.com
 ```
 
-**It must print your server IP.** If it prints nothing, wait longer and run it again.
+**Both must print your server IP.** If it prints nothing, wait longer and run it again.
 Do not continue until it prints the IP — Step 10 will fail otherwise.
 
 ---
@@ -123,7 +124,7 @@ MONGO_ROOT_PASSWORD=PASTE_MONGO_PASSWORD_HERE
 
 PORT=5000
 JWT_SECRET=PASTE_JWT_SECRET_HERE
-CLIENT_URL=https://wwwdubaicartowingservice.com
+CLIENT_URL=https://cartowingservicedubai.com
 
 ADMIN_USERNAME=admin
 ADMIN_PASSWORD=PASTE_ADMIN_PASSWORD_HERE
@@ -189,7 +190,7 @@ curl localhost/health
 
 You should see `{"ok":true}`.
 
-Open `http://wwwdubaicartowingservice.com` in your browser — the site should load (no padlock yet).
+Open `http://cartowingservicedubai.com` in your browser — the site should load (no padlock yet).
 
 ---
 
@@ -197,7 +198,7 @@ Open `http://wwwdubaicartowingservice.com` in your browser — the site should l
 
 ```bash
 docker compose run --rm --entrypoint certbot certbot certonly --webroot -w /var/www/certbot \
-  -d wwwdubaicartowingservice.com -d www.wwwdubaicartowingservice.com \
+  -d cartowingservicedubai.com -d www.cartowingservicedubai.com \
   --email almasshabir967@gmail.com --agree-tos --no-eff-email
 ```
 
@@ -214,7 +215,7 @@ git pull origin main && docker compose restart nginx
 > the next auto-deploy fail with *"local changes would be overwritten by merge"*.
 > If that happens: `git checkout -- nginx/default.conf` then `git pull`.
 
-Visit `https://wwwdubaicartowingservice.com` — you should now see a padlock.
+Visit `https://cartowingservicedubai.com` — you should now see a padlock.
 
 Certificates renew automatically. Nothing more to do.
 
@@ -302,7 +303,7 @@ Usually a wrong value in `.env`. Fix it, then `docker compose up -d`.
 Your DNS isn't ready. Check:
 
 ```bash
-dig +short wwwdubaicartowingservice.com
+dig +short cartowingservicedubai.com
 ```
 
 If it doesn't print your server IP, wait and retry. Let's Encrypt blocks you after
