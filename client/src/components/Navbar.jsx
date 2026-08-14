@@ -68,9 +68,6 @@ const Navbar = () => {
          <li className={pathname === '/about' ? 'active' : ''}>
           <Link to="/about">About Us</Link>
         </li>
-        <li className={pathname === '/admin/login' ? 'active' : ''}>
-          <Link to="/admin/login">Admin</Link>
-        </li>
       </ul>
 
       <a href="tel:+971586729393" className="navbar-call-btn">
