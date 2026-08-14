@@ -4,9 +4,22 @@
   box-sizing: border-box;
 }
 
+html {
+  overflow-x: hidden;
+  scrollbar-gutter: stable;
+}
+
 body {
   font-family: 'Poppins', sans-serif;
   background: #060a14;
+  overflow-x: hidden;
+}
+
+@supports (overflow: clip) {
+  html,
+  body {
+    overflow-x: clip;
+  }
 }
 
 a {

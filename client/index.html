@@ -12,6 +12,15 @@
     <meta name="theme-color" content="#060a14" />
     <link rel="canonical" href="https://cartowingservicedubai.com/" />
 
+    <!-- Prevent a hard refresh from painting at the browser's previous
+         scroll position before React has mounted. -->
+    <script>
+      if ('scrollRestoration' in window.history) {
+        window.history.scrollRestoration = 'manual';
+      }
+      window.scrollTo(0, 0);
+    </script>
+
     <link rel="icon" type="image/png" sizes="32x32" href="/logo-32.png" />
     <link rel="apple-touch-icon" href="/logo-180.png" />
 
