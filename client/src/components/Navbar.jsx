@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { getServices } from '../api/serviceApi';
 import seedServices from '../data/services';
 import './Navbar.css';
-import logo from '../assets/images/logo.png';
+import logo from '../assets/images/logo (1).webp';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
