@@ -40,8 +40,8 @@ const services = [
     name: 'Commercial Vehicle Towing',
     shortDesc: 'Trusted towing solutions for commercial vehicles.',
     longDesc:
-      'When your commercial vehicle breaks down or is involved in an accident, our recovery team responds quickly with the right equipment to recover and transport it safely.',
-    features: ['Breakdown recovery',' Accident recovery', 'Heavy-duty recovery equipment'],
+      'When you need to move your commercial vehicles or heavy equipment from one site to another, our professional team provides safe, reliable, and efficient transportation services. We handle the loading, transportation, and delivery of your vehicles with care, ensuring they reach the destination safely and on time.',
+    features: ['Site-to-site vehicle transportation',' Heavy commercial vehicle shifting', 'Construction equipment transportation', 'Safe and reliable loading & delivery'],
   },
   {
     slug: 'heavy-vehicle-recovery',
