@@ -60,7 +60,7 @@ const AdminLogin = () => {
 
   return (
     <>
-    <Navbar />
+    {/* <Navbar /> */}
     <div className="admin-login-page">
       <div className="auth-card">
   
