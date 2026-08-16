@@ -74,10 +74,6 @@ app.use((req, res, next) => {
 app.use(express.json({ limit: "10mb" }));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-app.get("/", (req, res) => {
-  res.send("Usama Towing Service API is running");
-});
-
 app.get("/health", (req, res) => res.json({ ok: true }));
 
 app.use("/api/bookings", bookingRoutes);
