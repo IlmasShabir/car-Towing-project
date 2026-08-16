@@ -1,23 +1,13 @@
-import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaFacebookF } from 'react-icons/fa';
 import { FaTiktok } from 'react-icons/fa6';
-import { getServices } from '../api/serviceApi';
 import seedServices from '../data/services';
+import { useServices } from '../context/ServicesContext';
 import './Footer.css';
 
 const Footer = () => {
-  const [services, setServices] = useState(seedServices);
-
-  useEffect(() => {
-    getServices()
-      .then((data) => {
-        if (data.length > 0) setServices(data);
-      })
-      .catch(() => {
-        // Backend not reachable - keep showing the built-in service list
-      });
-  }, []);
+  const { services, loading } = useServices();
+  const displayServices = loading ? seedServices : services;
 
   return (
     <footer className="site-footer">
@@ -45,7 +35,7 @@ const Footer = () => {
 
         <div className="footer-col">
           <h5>Our Services</h5>
-          {services.slice(0, 5).map((s) => (
+          {displayServices.slice(0, 5).map((s) => (
             <Link key={s.slug} to={`/services/${s.slug}`}>
               {s.name}
             </Link>

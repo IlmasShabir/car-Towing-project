@@ -1,18 +1,18 @@
-import React from 'react';
-import Navbar from '../components/Navbar';
-import PageHeader from '../components/PageHeader';
-import Reveal from '../components/Reveal';
-import StatsBar from '../components/StatsBar';
-import Footer from '../components/Footer';
-import team from '../assets/images/team.jpg.jpeg';
-import './About.css';
+import React from "react";
+import Navbar from "../components/Navbar";
+import PageHeader from "../components/PageHeader";
+import Reveal from "../components/Reveal";
+import StatsBar from "../components/StatsBar";
+import Footer from "../components/Footer";
+import team from "../assets/images/team.jpg";
+import "./About.css";
 
 const points = [
-  '24/7 Premium Towing Service',
-  'Modern Fleet & Equipment',
-  'Experienced & Trained Team',
-  'Affordable & Transparent Pricing',
-  'Customer Satisfaction Guaranteed',
+  "24/7 Premium Towing Service",
+  "Modern Fleet & Equipment",
+  "Experienced & Trained Team",
+  "Affordable & Transparent Pricing",
+  "Customer Satisfaction Guaranteed",
 ];
 
 const About = () => {

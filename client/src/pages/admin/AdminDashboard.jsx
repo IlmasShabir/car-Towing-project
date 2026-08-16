@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { clearAdminToken } from '../../api/adminApi';
 import { getReviews, deleteReview } from '../../api/reviewApi';
 import { getServices, createService, updateService, deleteService } from '../../api/serviceApi';
+import { getServiceImageUrl } from '../../utils/imageUrl';
 import seedServices from '../../data/services';
 import './AdminDashboard.css';
 
@@ -16,32 +17,39 @@ const AdminDashboard = () => {
   const [reviews, setReviews] = useState([]);
   const [services, setServices] = useState([]);
 
-  const [editingService, setEditingService] = useState(null); // null | 'new' | service object
+  const [editingService, setEditingService] = useState(null);
   const [form, setForm] = useState(emptyForm);
+  const [imageFile, setImageFile] = useState(null);
+  const [imagePreview, setImagePreview] = useState('');
   const [formError, setFormError] = useState('');
   const [saving, setSaving] = useState(false);
 
-  const loadData = () => {
-    setLoading(true);
-    Promise.all([getReviews().catch(() => []), getServices().catch(() => [])]).then(
-      ([r, s]) => {
-        setReviews(r);
-        setServices(s);
-        setLoading(false);
-      }
-    );
-  };
-
   useEffect(() => {
-    loadData();
+    let mounted = true;
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const [r, s] = await Promise.all([
+          getReviews().catch(() => []),
+          getServices().catch(() => [])
+        ]);
+        if (mounted) {
+          setReviews(r);
+          setServices(s);
+          setLoading(false);
+        }
+      } catch {
+        if (mounted) setLoading(false);
+      }
+    };
+    fetchData();
+    return () => { mounted = false; };
   }, []);
 
   const handleLogout = () => {
     clearAdminToken();
     navigate('/admin/login');
   };
-
-  // ---------- Reviews ----------
 
   const handleDeleteReview = async (id) => {
     if (!window.confirm('Delete this review?')) return;
@@ -53,10 +61,10 @@ const AdminDashboard = () => {
     }
   };
 
-  // ---------- Services ----------
-
   const openNewServiceForm = () => {
     setForm(emptyForm);
+    setImageFile(null);
+    setImagePreview('');
     setEditingService('new');
     setFormError('');
   };
@@ -70,6 +78,8 @@ const AdminDashboard = () => {
       longDesc: service.longDesc,
       features: (service.features || []).join(', '),
     });
+    setImageFile(null);
+    setImagePreview(getServiceImageUrl(service));
     setEditingService(service);
     setFormError('');
   };
@@ -79,9 +89,25 @@ const AdminDashboard = () => {
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (!file) return;
+    setImageFile(file);
     const reader = new FileReader();
-    reader.onload = () => setForm((prev) => ({ ...prev, image: reader.result }));
+    reader.onload = () => setImagePreview(reader.result);
     reader.readAsDataURL(file);
+  };
+
+  const buildFormData = () => {
+    const formData = new FormData();
+    formData.append('slug', form.slug.trim().toLowerCase().replace(/\s+/g, '-'));
+    formData.append('name', form.name);
+    formData.append('shortDesc', form.shortDesc);
+    formData.append('longDesc', form.longDesc);
+    formData.append('features', JSON.stringify(
+      form.features.split(',').map((f) => f.trim()).filter(Boolean)
+    ));
+    if (imageFile) {
+      formData.append('image', imageFile);
+    }
+    return formData;
   };
 
   const handleSaveService = async (e) => {
@@ -89,27 +115,19 @@ const AdminDashboard = () => {
     setSaving(true);
     setFormError('');
 
-    const payload = {
-      slug: form.slug.trim().toLowerCase().replace(/\s+/g, '-'),
-      image: form.image,
-      name: form.name,
-      shortDesc: form.shortDesc,
-      longDesc: form.longDesc,
-      features: form.features
-        .split(',')
-        .map((f) => f.trim())
-        .filter(Boolean),
-    };
+    const formData = buildFormData();
 
     try {
       if (editingService === 'new') {
-        const created = await createService(payload);
+        const created = await createService(formData);
         setServices((prev) => [...prev, created]);
       } else {
-        const updated = await updateService(editingService._id, payload);
+        const updated = await updateService(editingService._id, formData);
         setServices((prev) => prev.map((s) => (s._id === updated._id ? updated : s)));
       }
       setEditingService(null);
+      setImageFile(null);
+      setImagePreview('');
     } catch (err) {
       setFormError(err.message);
     } finally {
@@ -140,12 +158,24 @@ const AdminDashboard = () => {
           features: s.features,
         });
       }
-      loadData();
+      // Reload data after import
+      const [r, s] = await Promise.all([
+        getReviews().catch(() => []),
+        getServices().catch(() => [])
+      ]);
+      setReviews(r);
+      setServices(s);
     } catch (err) {
       alert(err.message);
     } finally {
       setSaving(false);
     }
+  };
+
+  const removeImage = () => {
+    setImageFile(null);
+    setImagePreview('');
+    setForm((prev) => ({ ...prev, image: '' }));
   };
 
   return (
@@ -189,7 +219,7 @@ const AdminDashboard = () => {
               {services.map((service) => (
                 <div className="admin-service-card" key={service._id}>
                   {service.image ? (
-                    <img src={service.image} alt={service.name} className="admin-service-img" />
+                    <img src={getServiceImageUrl(service)} alt={service.name} className="admin-service-img" />
                   ) : (
                     <div className="admin-service-img admin-service-img-placeholder">No Image</div>
                   )}
@@ -247,7 +277,12 @@ const AdminDashboard = () => {
               Service Image
               <input type="file" accept="image/*" onChange={handleImageChange} />
             </label>
-            {form.image && <img src={form.image} alt="Preview" className="admin-image-preview" />}
+            {imagePreview && (
+              <div className="admin-image-preview-wrapper">
+                <img src={imagePreview} alt="Preview" className="admin-image-preview" />
+                <button type="button" className="admin-image-remove" onClick={removeImage} aria-label="Remove image">×</button>
+              </div>
+            )}
 
             <input
               name="name"
@@ -281,7 +316,7 @@ const AdminDashboard = () => {
             {formError && <p className="admin-form-error">{formError}</p>}
 
             <div className="admin-modal-actions">
-              <button type="button" onClick={() => setEditingService(null)}>
+              <button type="button" onClick={() => { setEditingService(null); setImageFile(null); setImagePreview(''); }}>
                 Cancel
               </button>
               <button type="submit" disabled={saving}>

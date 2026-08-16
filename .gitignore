@@ -25,3 +25,6 @@ dist-ssr
 .env
 client/node_modules/
 server/node_modules/
+
+# Uploads (created in Docker for production)
+server/uploads/

@@ -1,11 +1,11 @@
-import React from 'react';
-import Navbar from '../components/Navbar';
-import PageHeader from '../components/PageHeader';
-import Reveal from '../components/Reveal';
-import FAQAccordion from '../components/FAQAccordion';
-import Footer from '../components/Footer';
-import truckImage from '../assets/images/tow-truck.jpg.jpeg';
-import './FAQ.css';
+import React from "react";
+import Navbar from "../components/Navbar";
+import PageHeader from "../components/PageHeader";
+import Reveal from "../components/Reveal";
+import FAQAccordion from "../components/FAQAccordion";
+import Footer from "../components/Footer";
+import truckImage from "../assets/images/tow-truck-dubai.jpg";
+import "./FAQ.css";
 
 const FAQ = () => {
   return (

@@ -1,25 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { getServices } from '../api/serviceApi';
 import seedServices from '../data/services';
+import { useServices } from '../context/ServicesContext';
 import './Navbar.css';
 import logo from '../assets/images/logo (1).webp';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
-  const [services, setServices] = useState(seedServices);
+  const { services, loading } = useServices();
   const { pathname } = useLocation();
 
-  useEffect(() => {
-    getServices()
-      .then((data) => {
-        if (data.length > 0) setServices(data);
-      })
-      .catch(() => {
-        // Backend not reachable - keep showing the built-in service list
-      });
-  }, []);
+  const displayServices = loading ? seedServices : services;
 
   return (
     <nav className="navbar-custom">
@@ -45,7 +37,7 @@ const Navbar = () => {
           <Link to="/services">Services ▾</Link>
           {servicesOpen && (
             <ul className="dropdown-menu">
-              {services.map((s) => (
+              {displayServices.map((s) => (
                 <li key={s.slug}>
                   <Link to={`/services/${s.slug}`}>{s.name}</Link>
                 </li>

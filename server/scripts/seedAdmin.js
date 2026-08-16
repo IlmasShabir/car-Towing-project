@@ -1,19 +1,21 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
-require("dotenv").config();
+require("dotenv").config({
+  path: require("path").resolve(__dirname, "../.env"),
+});
 
 const AdminUser = require("../models/AdminUser");
 
 const seedAdmin = async () => {
-  const MONGO_URI = process.env.MONGO_URI;
+  const uri = process.env.MONGO_URI || "mongodb://localhost:27017/towing";
 
   try {
     console.log("Connecting to MongoDB...");
-    await mongoose.connect(MONGO_URI);
+    await mongoose.connect(uri);
     console.log("Connected successfully.");
 
-    const adminUsername = "usama1351";
-    const plainPassword = "usama@17";
+    const adminUsername = process.env.ADMIN_USERNAME || "admin";
+    const plainPassword = process.env.ADMIN_PASSWORD || "admin123";
 
     const existingAdmin = await AdminUser.findOne({ username: adminUsername });
 
@@ -27,7 +29,7 @@ const seedAdmin = async () => {
 
       await AdminUser.create({
         username: adminUsername,
-        email: "usama@admin.com",
+        email: "admin@towing.com",
         password: hashedPassword,
         status: "approved",
       });
@@ -39,7 +41,6 @@ const seedAdmin = async () => {
   } catch (error) {
     console.error("Error during seeding:", error);
   } finally {
-    // Always close connection when script finishes
     await mongoose.connection.close();
     console.log("Database connection closed.");
     process.exit(0);
