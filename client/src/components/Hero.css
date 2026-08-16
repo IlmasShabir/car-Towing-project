@@ -9,7 +9,7 @@
   font-family: 'Poppins', sans-serif;
 
   /* Background photo only — no dark overlay across the whole image */
-  background: url("../assets/images/bg2.png") center/cover no-repeat;
+  background: url("../assets/images/bg2 (3).webp") center/cover no-repeat;
 }
 
 /* Soft dark fade on the LEFT ONLY, so the heading text stays readable
