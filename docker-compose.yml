@@ -14,6 +14,7 @@ services:
     env_file: .env
     environment:
       MONGO_URI: mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASSWORD}@mongo:27017/towing?authSource=admin
+      PORT: 3000
     volumes:
       - uploads:/app/uploads
     depends_on:
