@@ -20,5 +20,6 @@ jobs:
             cd /root/app
             git fetch origin main
             git reset --hard origin/main
+            docker compose down --remove-orphans
             docker compose up -d --build
-            docker image prune -f
+            docker system prune -f --volumes

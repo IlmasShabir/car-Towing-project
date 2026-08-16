@@ -11,5 +11,5 @@ COPY . .
 
 RUN mkdir -p uploads/services
 
-EXPOSE 5000
+EXPOSE 3000
 CMD ["node", "server.js"]
