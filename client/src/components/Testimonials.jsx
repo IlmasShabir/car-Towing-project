@@ -33,17 +33,31 @@ const Testimonials = () => {
               View All Reviews →
             </Link>
           </div>
-          <ReviewCard review={reviews[index]} dark />
-          <div className="testimonials-dots">
-            {reviews.map((_, i) => (
-              <button
-                key={i}
-                className={`dot ${i === index ? 'active' : ''}`}
-                onClick={() => setIndex(i)}
-                aria-label={`Show review ${i + 1}`}
-              />
-            ))}
-          </div>
+          <div className="testimonial-card-wrapper">
+  <ReviewCard review={reviews[index]} dark />
+
+  <div className="testimonial-arrows">
+    <button
+      type="button"
+      onClick={() =>
+        setIndex((index - 1 + reviews.length) % reviews.length)
+      }
+      aria-label="Previous review"
+    >
+      ←
+    </button>
+
+    <button
+      type="button"
+      onClick={() =>
+        setIndex((index + 1) % reviews.length)
+      }
+      aria-label="Next review"
+    >
+      →
+    </button>
+  </div>
+</div>
         </Reveal>
 
         <Reveal direction="right" delay={150}>
