@@ -66,6 +66,11 @@ const Footer = () => {
 
       <div className="footer-bottom">
         <p>© {new Date().getFullYear()} Usama Car Towing . All Rights Reserved.</p>
+         <div className="footer-socials">
+          <a href="https://www.facebook.com/share/1JZygL2Fr1/" aria-label="Facebook">f</a>
+          <a href="https://www.tiktok.com/@cars.towing.servi" aria-label="TikTok">tk</a>
+          
+        </div>
       </div>
     </footer>
   );
