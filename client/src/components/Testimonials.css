@@ -16,34 +16,37 @@
 
 .testimonial-arrows {
   position: absolute;
-  top: 18px;
-  right: 20px;
+  top: 24px;
+  right: 22px;
   display: flex;
-  gap: 8px;
+  gap: 12px;
   z-index: 5;
 }
 
 .testimonial-arrows button {
-  width: 28px;
-  height: 28px;
-  border: 1px solid rgba(245, 180, 0, 0.5);
-  border-radius: 50%;
-  background: rgba(31, 39, 62, 0.75);
+  border: none;
+  background: transparent;
   color: #f5b400;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 1;
+
+  font-size: 22px;
+  font-weight: 2000;
+  line-height: 0.8;
+
+  padding: 0;
+  margin: 0;
   cursor: pointer;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s ease;
+
+  transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .testimonial-arrows button:hover {
-  background: #f5b400;
-  color: #0a0e1a;
-  transform: scale(1.08);
+  background: transparent;
+  color: #ffd54f;
+  transform: scale(1.12);
 }
 .testimonials-header {
   display: flex;
