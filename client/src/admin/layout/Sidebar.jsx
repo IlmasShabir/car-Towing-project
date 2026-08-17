@@ -48,7 +48,7 @@ const Sidebar = ({ mobileOpen, onNavigate }) => {
   };
 
   return (
-    <aside className={`a-sidebar${mobileOpen ? ' mobile-open' : ''}`}>
+    <aside className={`a-sidebar${mobileOpen ? ' mobile-open' : ''}`} data-od-id="admin-sidebar">
       <div className="a-brand" onClick={() => handleClick('/admin/dashboard')} style={{ cursor: 'pointer' }}>
         <img src={logo} alt="Usama Car Towing" />
         <div className="a-brand-text">
@@ -71,6 +71,7 @@ const Sidebar = ({ mobileOpen, onNavigate }) => {
                   end={item.end}
                   onClick={() => onNavigate?.()}
                   className={({ isActive }) => `a-nav-link${isActive ? ' active' : ''}`}
+                  aria-label={item.label}
                 >
                   <span className="a-nav-icon"><Icon /></span>
                   <span className="a-nav-label">{item.label}</span>
@@ -83,7 +84,7 @@ const Sidebar = ({ mobileOpen, onNavigate }) => {
       </nav>
 
       <div className="a-sidebar-footer">
-        <div className="a-sidebar-user">
+        <div className="a-sidebar-user" title={user?.name || user?.username}>
           <Avatar name={initials(user?.name || user?.username)} title={user?.name || user?.username} />
           <div className="a-sidebar-user-info">
             <div className="a-sidebar-user-name">{user?.name || user?.username || 'Admin'}</div>

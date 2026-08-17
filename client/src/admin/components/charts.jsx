@@ -1,9 +1,12 @@
-import { useMemo, useState } from 'react';
+import { useId, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 const W = 640;
 const H = 220;
-const PAD = { top: 14, right: 12, bottom: 26, left: 30 };
+const PAD = { top: 14, right: 12, bottom: 26, left: 34 };
+
+const GRID = '#e8ecf4';
+const AXIS = '#9aa8bd';
 
 /* ---------------------------------------------------------------
    Area / line chart — real data only, renders whatever points
@@ -12,6 +15,7 @@ const PAD = { top: 14, right: 12, bottom: 26, left: 30 };
 
 export const AreaChart = ({ data, color = '#f5b400', formatValue }) => {
   const [tip, setTip] = useState(null);
+  const gradId = useId();
 
   const { points, max, min, areaPath, linePath } = useMemo(() => {
     if (!data || data.length === 0) {
@@ -58,24 +62,31 @@ export const AreaChart = ({ data, color = '#f5b400', formatValue }) => {
     <div className="a-chart-canvas">
       <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label="Trend chart">
         <defs>
-          <linearGradient id="a-area-fill" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor={color} stopOpacity="0.28" />
+          <linearGradient id={gradId} x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor={color} stopOpacity="0.26" />
             <stop offset="100%" stopColor={color} stopOpacity="0.02" />
           </linearGradient>
         </defs>
 
         {ticks.map((t) => (
           <g key={t.y}>
-            <line x1={PAD.left} x2={W - PAD.right} y1={t.y} y2={t.y} stroke="#edf0f6" strokeWidth="1" />
-            <text x={PAD.left - 8} y={t.y + 3.5} textAnchor="end" fontSize="10" fill="#94a3b8">
+            <line x1={PAD.left} x2={W - PAD.right} y1={t.y} y2={t.y} stroke={GRID} strokeWidth="1" />
+            <text x={PAD.left - 8} y={t.y + 3.5} textAnchor="end" fontSize="10" fill={AXIS}>
               {formatValue ? formatValue(t.value) : t.value}
             </text>
           </g>
         ))}
 
-        {areaPath && <path d={areaPath} fill="url(#a-area-fill)" />}
+        {areaPath && <path d={areaPath} fill={`url(#${gradId})`} />}
         {linePath && (
-          <path d={linePath} fill="none" stroke={color} strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+          <path
+            d={linePath}
+            fill="none"
+            stroke={color}
+            strokeWidth="2.6"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
         )}
 
         {points.map((p) => (
@@ -83,10 +94,10 @@ export const AreaChart = ({ data, color = '#f5b400', formatValue }) => {
             key={p.x}
             cx={p.x}
             cy={p.y}
-            r="4"
+            r="4.5"
             fill="#fff"
             stroke={color}
-            strokeWidth="2"
+            strokeWidth="2.2"
             style={{ cursor: 'pointer' }}
             onMouseEnter={(e) => {
               const rect = e.currentTarget.ownerSVGElement.getBoundingClientRect();
@@ -101,7 +112,7 @@ export const AreaChart = ({ data, color = '#f5b400', formatValue }) => {
         <g>
           {points.map((p, i) =>
             i % Math.ceil(points.length / 7) === 0 || i === points.length - 1 ? (
-              <text key={p.x} x={p.x} y={H - 8} textAnchor="middle" fontSize="9.5" fill="#94a3b8">
+              <text key={p.x} x={p.x} y={H - 8} textAnchor="middle" fontSize="9.5" fill={AXIS}>
                 {p.label.split(',').slice(-1)[0].trim()}
               </text>
             ) : null,
@@ -141,12 +152,9 @@ export const DonutChart = ({ data, size = 150, thickness = 20, centerLabel, cent
   const segments = data.reduce((acc, d) => {
     const fraction = (Number(d.value) || 0) / total;
     const prevOffset = acc.reduce((sum, seg) => sum + seg.fraction, 0);
-    acc.push({
-      ...d,
-      fraction,
-      dash: `${fraction * circumference} ${circumference}`,
-      offset: -prevOffset * circumference,
-    });
+    const gap = acc.length ? 3 : 0;
+    const dash = `${Math.max(0, fraction * circumference - gap)} ${circumference}`;
+    acc.push({ ...d, fraction, dash, offset: -prevOffset * circumference });
     return acc;
   }, []);
 
@@ -167,7 +175,9 @@ export const DonutChart = ({ data, size = 150, thickness = 20, centerLabel, cent
             strokeDashoffset={seg.offset}
             transform={`rotate(-90 ${size / 2} ${size / 2})`}
             strokeLinecap="butt"
-          />
+          >
+            <title>{`${seg.label}: ${seg.value} (${Math.round(seg.fraction * 100)}%)`}</title>
+          </circle>
         ))}
         {centerLabel && (
           <text x="50%" y="47%" textAnchor="middle" fontSize={size * 0.1} fontWeight="700" fill="#0f172a">
@@ -175,7 +185,7 @@ export const DonutChart = ({ data, size = 150, thickness = 20, centerLabel, cent
           </text>
         )}
         {centerLabel && (
-          <text x="50%" y="58%" textAnchor="middle" fontSize={size * 0.055} fill="#94a3b8">
+          <text x="50%" y="58%" textAnchor="middle" fontSize={size * 0.055} fill={AXIS}>
             {centerLabel}
           </text>
         )}
@@ -186,7 +196,9 @@ export const DonutChart = ({ data, size = 150, thickness = 20, centerLabel, cent
             <span className="a-chart-legend-swatch" style={{ background: seg.color }} />
             {seg.label}
             <strong style={{ marginLeft: 'auto', color: 'var(--a-text)' }}>{seg.value}</strong>
-            <span style={{ minWidth: 38, textAlign: 'right' }}>{Math.round(seg.fraction * 100)}%</span>
+            <span style={{ minWidth: 38, textAlign: 'right', fontVariantNumeric: 'tabular-nums' }}>
+              {Math.round(seg.fraction * 100)}%
+            </span>
           </div>
         ))}
       </div>
@@ -207,8 +219,21 @@ export const BarChart = ({ data, color = '#f5b400' }) => {
         const value = Number(d.value) || 0;
         const h = (value / max) * 100;
         return (
-          <div key={d.label} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6, height: '100%', justifyContent: 'flex-end' }}>
-            <span style={{ fontSize: 10.5, fontWeight: 600, color: 'var(--a-text)' }}>{value}</span>
+          <div
+            key={d.label}
+            style={{
+              flex: 1,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: 6,
+              height: '100%',
+              justifyContent: 'flex-end',
+            }}
+          >
+            <span style={{ fontSize: 10.5, fontWeight: 650, color: 'var(--a-text)', fontVariantNumeric: 'tabular-nums' }}>
+              {value}
+            </span>
             <div
               title={`${d.label}: ${value}`}
               style={{
@@ -216,8 +241,19 @@ export const BarChart = ({ data, color = '#f5b400' }) => {
                 maxWidth: 34,
                 height: `${h}%`,
                 minHeight: value ? 5 : 2,
-                borderRadius: '6px 6px 2px 2px',
-                background: value ? color : '#e8ecf3',
+                borderRadius: '7px 7px 2px 2px',
+                background: value ? `linear-gradient(180deg, ${color}, ${color}88)` : '#e8ecf3',
+                transition: 'filter 0.15s ease, transform 0.15s ease',
+              }}
+              onMouseEnter={(e) => {
+                if (!value) return;
+                e.currentTarget.style.filter = 'brightness(1.06)';
+                e.currentTarget.style.transform = 'scaleY(1.03)';
+                e.currentTarget.style.transformOrigin = 'bottom';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.filter = '';
+                e.currentTarget.style.transform = '';
               }}
             />
             <span style={{ fontSize: 10, color: 'var(--a-faint)' }}>{d.label}</span>

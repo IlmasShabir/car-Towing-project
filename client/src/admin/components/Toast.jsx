@@ -45,7 +45,7 @@ export const ToastProvider = ({ children }) => {
           const meta = TOAST_META[toast.type] || TOAST_META.info;
           const Icon = meta.icon;
           return (
-            <div className="a-toast" key={toast.id}>
+            <div className="a-toast" key={toast.id} data-tone={toast.type}>
               <span className={`a-toast-icon ${meta.tone}`}>
                 <Icon />
               </span>

@@ -83,7 +83,7 @@ const GlobalSearch = ({ open, onClose }) => {
 
   return (
     <Modal open={open} onClose={onClose} className="a-search-dialog" wide>
-      <div className="a-search-dialog">
+      <div className="a-search-dialog" data-od-id="global-search">
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '4px 18px', borderBottom: '1px solid var(--a-border)' }}>
           <span style={{ color: 'var(--a-faint)' }}>
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">

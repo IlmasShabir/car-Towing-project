@@ -305,7 +305,7 @@ const AdminsPage = () => {
         </div>
       ) : (
         <>
-          <div className="a-table-wrap">
+          <div className="a-table-wrap" data-od-id="admins-table">
             <table className="a-table">
               <thead>
                 <tr>

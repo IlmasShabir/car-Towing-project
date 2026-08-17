@@ -94,7 +94,7 @@ const ReviewsPage = () => {
         </div>
       ) : (
         <>
-          <div className="a-table-wrap">
+          <div className="a-table-wrap" data-od-id="reviews-table">
             <table className="a-table">
               <thead>
                 <tr>

@@ -47,6 +47,7 @@ export const Button = ({
   ...rest
 }) => (
   <button
+    type="button"
     className={`a-btn a-btn-${variant} ${size !== 'md' ? `a-btn-${size}` : ''} ${className}`}
     disabled={disabled || loading}
     {...rest}
@@ -126,8 +127,8 @@ export const Textarea = ({ className = '', ...rest }) => (
   <textarea className={`a-textarea ${className}`} {...rest} />
 );
 
-export const SearchBox = ({ value, onChange, placeholder = 'Search...', className = '' }) => (
-  <div className={`a-search-box ${className}`}>
+export const SearchBox = ({ value, onChange, placeholder = 'Search...', className = '', ...rest }) => (
+  <div className={`a-search-box ${className}`} {...rest}>
     <span className="a-search-icon">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
         <circle cx="11" cy="11" r="7" />
@@ -178,7 +179,7 @@ export const Modal = ({ open, onClose, title, sub, children, footer, wide = fals
 
   return createPortal(
     <div className="a-overlay" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
-      <div className={`a-modal${wide ? ' wide' : ''}`} role="dialog" aria-modal="true" aria-label={title}>
+      <div className={`a-modal${wide ? ' wide' : ''}`} role="dialog" aria-modal="true" aria-label={title} data-od-id="admin-modal">
         {(title || sub) && (
           <div className="a-modal-head">
             <div>
@@ -206,7 +207,7 @@ export const Drawer = ({ open, onClose, title, sub, children }) => {
   return createPortal(
     <>
       <div className="a-drawer-overlay" onClick={onClose} />
-      <div className="a-drawer" role="dialog" aria-modal="true" aria-label={title}>
+      <div className="a-drawer" role="dialog" aria-modal="true" aria-label={title} data-od-id="detail-drawer">
         <div className="a-drawer-head">
           <div>
             <div className="a-modal-title">{title}</div>
@@ -240,7 +241,7 @@ export const ConfirmDialog = ({
 
   return createPortal(
     <div className="a-overlay" onMouseDown={(e) => e.target === e.currentTarget && !loading && onClose()}>
-      <div className="a-modal" style={{ maxWidth: 420 }} role="alertdialog" aria-modal="true">
+      <div className="a-modal" style={{ maxWidth: 420 }} role="alertdialog" aria-modal="true" data-od-id="confirm-dialog">
         <div className="a-modal-body" style={{ paddingTop: 24 }}>
           <div style={{ display: 'flex', gap: 14 }}>
             <span
@@ -323,7 +324,7 @@ export const TableSkeleton = ({ rows = 6, cols = 5 }) => (
       <Skeleton style={{ width: '30%', height: 12 }} />
     </div>
     {Array.from({ length: rows }).map((_, i) => (
-      <div className="a-skel-row" key={i}>
+      <div className="a-skel-row" key={i} style={{ gridTemplateColumns: `repeat(${cols}, 1fr)` }}>
         {Array.from({ length: cols }).map((__, j) => (
           <Skeleton key={j} style={{ width: j === 0 ? '70%' : '85%' }} />
         ))}
@@ -352,7 +353,7 @@ export const Pagination = ({ page, pages, total, onChange, pageSizeLabel }) => {
   if (pages <= 1) return null;
 
   return (
-    <div className="a-pagination">
+    <div className="a-pagination" data-od-id="pagination">
       <span className="a-pagination-info">
         {pageSizeLabel || `Page ${page} of ${pages}`}
         {typeof total === 'number' && ` · ${total} total`}
@@ -421,8 +422,8 @@ export const Stars = ({ rating }) => (
   </span>
 );
 
-export const StatCard = ({ label, value, foot, icon, tone = 'blue', loading }) => (
-  <div className="a-card a-stat-card">
+export const StatCard = ({ label, value, foot, icon, tone = 'blue', loading, ...rest }) => (
+  <div className="a-card a-stat-card" {...rest}>
     <span className={`a-stat-icon tone-${tone}`}>{icon}</span>
     <div style={{ minWidth: 0 }}>
       <div className="a-stat-label">{label}</div>
@@ -480,7 +481,7 @@ export const RowMenu = ({ items }) => {
 
   return (
     <div className="a-icon-menu-wrap" ref={wrapRef}>
-      <IconButton label="Row actions" onClick={() => setOpen((v) => !v)}>
+      <IconButton label="Row actions" onClick={() => setOpen((v) => !v)} data-od-id="row-actions">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
           <circle cx="5" cy="12" r="1.7" />
           <circle cx="12" cy="12" r="1.7" />

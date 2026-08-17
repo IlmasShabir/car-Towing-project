@@ -26,7 +26,7 @@ const AdminLayout = ({ children }) => {
           onToggleSidebar={() => setCollapsed((v) => !v)}
           onToggleMobile={() => setMobileOpen((v) => !v)}
         />
-        <main className="a-content">{children}</main>
+        <main className="a-content" data-od-id="admin-content">{children}</main>
       </div>
     </div>
   );

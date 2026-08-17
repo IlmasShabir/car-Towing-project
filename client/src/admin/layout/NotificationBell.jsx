@@ -84,7 +84,7 @@ const NotificationBell = () => {
   };
 
   return (
-    <div className="a-icon-menu-wrap" ref={wrapRef}>
+    <div className="a-icon-menu-wrap" ref={wrapRef} data-od-id="notification-bell">
       <button
         className="a-icon-btn"
         onClick={() => setOpen((v) => !v)}

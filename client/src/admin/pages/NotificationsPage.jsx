@@ -229,7 +229,7 @@ const NotificationsPage = () => {
         </div>
       ) : (
         <>
-          <div className="a-table-wrap">
+          <div className="a-table-wrap" data-od-id="notifications-table">
             <table className="a-table">
               <thead>
                 <tr>

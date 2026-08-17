@@ -245,7 +245,7 @@ const BookingsPage = () => {
         </div>
       ) : (
         <>
-          <div className="a-table-wrap">
+          <div className="a-table-wrap" data-od-id="bookings-table">
             <table className="a-table">
               <thead>
                 <tr>

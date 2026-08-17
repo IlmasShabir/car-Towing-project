@@ -32,10 +32,11 @@ import { timeAgo, formatDateTime } from '../format';const STATUS_COLORS = {
   cancelled: '#dc2626',
 };
 
-const QuickAction = ({ icon, label, to, tone }) => (
+const QuickAction = ({ icon, label, to, tone, odId }) => (
   <Link
     to={to}
     className="a-menu-item"
+    data-od-id={odId}
     style={{ padding: '11px 14px', border: '1px solid var(--a-border)', justifyContent: 'flex-start' }}
   >
     <span className={`a-notif-icon ${tone}`}>{icon}</span>
@@ -135,6 +136,7 @@ const DashboardPage = () => {
       {/* KPI cards */}
       <div className="a-stat-grid">
         <StatCard
+          data-od-id="stat-card-bookings"
           label="Total bookings"
           value={totals.bookings}
           icon={<FiClipboard />}
@@ -146,6 +148,7 @@ const DashboardPage = () => {
           }
         />
         <StatCard
+          data-od-id="stat-card-pending"
           label="Pending requests"
           value={bookingStatus.pending}
           icon={<FiClock />}
@@ -157,6 +160,7 @@ const DashboardPage = () => {
           }
         />
         <StatCard
+          data-od-id="stat-card-completed"
           label="Completed jobs"
           value={bookingStatus.completed}
           icon={<FiCheckCircle />}
@@ -164,6 +168,7 @@ const DashboardPage = () => {
           foot={`${bookingStatus['in-progress']} in progress`}
         />
         <StatCard
+          data-od-id="stat-card-reviews"
           label="Customer reviews"
           value={totals.reviews}
           icon={<FiStar />}
@@ -173,14 +178,14 @@ const DashboardPage = () => {
       </div>
 
       <div className="a-stat-grid" style={{ marginTop: 16, gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))' }}>
-        <StatCard label="Services" value={totals.services} icon={<FiTool />} tone="violet" />
-        <StatCard label="Unread notifications" value={totals.unreadNotifications} icon={<FiBell />} tone="red" />
-        <StatCard label="Admin accounts" value={totals.admins} icon={<FiUsers />} tone="blue" />
+        <StatCard data-od-id="stat-card-services" label="Services" value={totals.services} icon={<FiTool />} tone="violet" />
+        <StatCard data-od-id="stat-card-unread" label="Unread notifications" value={totals.unreadNotifications} icon={<FiBell />} tone="red" />
+        <StatCard data-od-id="stat-card-admins" label="Admin accounts" value={totals.admins} icon={<FiUsers />} tone="blue" />
       </div>
 
       {/* Charts + quick actions */}
       <div className="a-grid-2" style={{ marginTop: 16, alignItems: 'start' }}>
-        <Card className="a-chart-card">
+        <Card className="a-chart-card" data-od-id="chart-bookings-trend">
           <CardHead
             title="Bookings — last 14 days"
             sub={bookingsTrend.reduce((s, d) => s + d.count, 0) ? 'Requests received per day' : 'No bookings in this window yet'}
@@ -188,7 +193,7 @@ const DashboardPage = () => {
           <AreaChart data={bookingsTrend} />
         </Card>
 
-        <Card>
+        <Card data-od-id="chart-booking-status">
           <CardHead title="Booking status" sub="Current distribution" />
           <CardBody>
             <DonutChart data={statusDonut} size={140} centerLabel="bookings" />
@@ -197,7 +202,7 @@ const DashboardPage = () => {
       </div>
 
       <div className="a-grid-2" style={{ marginTop: 16, alignItems: 'start' }}>
-        <Card>
+        <Card data-od-id="dashboard-recent-bookings">
           <CardHead
             title="Recent bookings"
             action={
@@ -235,7 +240,7 @@ const DashboardPage = () => {
         </Card>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-          <Card>
+          <Card data-od-id="dashboard-ratings">
             <CardHead title="Ratings" sub={averageRating ? `${averageRating} average` : 'No reviews yet'} />
             <CardBody>
               {totals.reviews === 0 ? (
@@ -248,14 +253,14 @@ const DashboardPage = () => {
             </CardBody>
           </Card>
 
-          <Card>
+          <Card data-od-id="dashboard-quick-actions">
             <CardHead title="Quick actions" />
             <CardBody>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
-                <QuickAction icon={<FiPlus />} label="Add service" to="/admin/services" tone="tone-violet" />
-                <QuickAction icon={<FiClipboard />} label="New booking" to="/admin/bookings" tone="tone-blue" />
-                <QuickAction icon={<FiStar />} label="Moderate reviews" to="/admin/reviews" tone="tone-orange" />
-                <QuickAction icon={<FiBell />} label="Notifications" to="/admin/notifications" tone="tone-accent" />
+                <QuickAction odId="quick-add-service" icon={<FiPlus />} label="Add service" to="/admin/services" tone="tone-violet" />
+                <QuickAction odId="quick-new-booking" icon={<FiClipboard />} label="New booking" to="/admin/bookings" tone="tone-blue" />
+                <QuickAction odId="quick-moderate-reviews" icon={<FiStar />} label="Moderate reviews" to="/admin/reviews" tone="tone-orange" />
+                <QuickAction odId="quick-notifications" icon={<FiBell />} label="Notifications" to="/admin/notifications" tone="tone-accent" />
               </div>
             </CardBody>
           </Card>
@@ -263,7 +268,7 @@ const DashboardPage = () => {
       </div>
 
       {/* Activity feed */}
-      <Card style={{ marginTop: 16 }}>
+      <Card style={{ marginTop: 16 }} data-od-id="dashboard-activity-feed">
         <CardHead title="Recent activity" sub="Latest requests, reviews and system events" />
         <CardBody flush>
           {activity.length === 0 ? (
