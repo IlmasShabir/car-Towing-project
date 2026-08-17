@@ -18,4 +18,15 @@ export default defineConfig([
       parserOptions: { ecmaFeatures: { jsx: true } },
     },
   },
+  // The admin panel loads server data on mount and syncs form/modal state
+  // from props via effects (the standard data-fetching pattern). The
+  // recommended hooks config flags these as potential cascading renders;
+  // the admin uses skeletons + explicit loading states instead, so the
+  // rule is relaxed here. Public site rules are unaffected.
+  {
+    files: ['src/admin/**/*.{js,jsx}'],
+    rules: {
+      'react-hooks/set-state-in-effect': 'off',
+    },
+  },
 ])

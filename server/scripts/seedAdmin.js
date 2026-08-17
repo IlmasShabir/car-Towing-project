@@ -31,6 +31,8 @@ const seedAdmin = async () => {
         username: adminUsername,
         email: "admin@towing.com",
         password: hashedPassword,
+        name: "Owner",
+        role: "superadmin",
         status: "approved",
       });
 

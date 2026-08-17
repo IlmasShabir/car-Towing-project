@@ -1,8 +1,12 @@
 import api from './axios';
 
-export const getReviews = async () => {
-  const data = await api.get('/reviews');
-  return data;
+export const getReviews = async (params = {}) => {
+  const query = new URLSearchParams();
+  Object.entries(params).forEach(([key, value]) => {
+    if (value !== undefined && value !== null && value !== '') query.set(key, value);
+  });
+  const qs = query.toString();
+  return api.get(`/reviews${qs ? `?${qs}` : ''}`);
 };
 
 export const createReview = async (reviewData) => {

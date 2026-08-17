@@ -1,522 +1,337 @@
 /* =========================================================
-   ADMIN LOGIN PAGE
+   ADMIN LOGIN — modern split-screen design
    ========================================================= */
 
-.admin-login-page {
+.al-page {
   min-height: 100vh;
   width: 100%;
+  background: #f4f6fb;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+  color: #0f172a;
+}
 
+.al-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  min-height: 100vh;
+}
+
+/* ---------- Brand panel ---------- */
+
+.al-brand-panel {
+  position: relative;
+  background: radial-gradient(1200px 700px at 20% -10%, #16233c 0%, #0b1322 55%);
+  color: #e6ecf7;
+  padding: 40px 56px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 20px;
-  box-sizing: border-box;
-
-  background: #050505;
-
-  font-family: "Poppins", sans-serif;
-}
-
-
-/* =========================================================
-   CARD + ANIMATED BORDER
-   ========================================================= */
-
-.auth-card {
-  position: relative;
-
-  width: 100%;
-  max-width: 470px;
-  min-height: 590px;
-
-  padding: 2px;
-
-  box-sizing: border-box;
-
-  overflow: hidden;
-
-  border-radius: 3px;
-
-  background: #202020;
-
-  isolation: isolate;
-
-  box-shadow:
-    0 0 30px rgba(0, 0, 0, 0.8),
-    0 0 60px rgba(0, 0, 0, 0.4);
-}
-
-
-/* Moving cyan + pink border */
-
-.auth-card::before {
-  content: "";
-
-  position: absolute;
-
-  width: 180%;
-  height: 180%;
-
-  top: -40%;
-  left: -40%;
-
-  background: conic-gradient(
-    from 0deg,
-
-    transparent 0deg,
-    transparent 35deg,
-
-    #20d9ff 55deg,
-    #20d9ff 90deg,
-
-    transparent 110deg,
-    transparent 170deg,
-
-    #e90046 190deg,
-    #e90046 225deg,
-
-    transparent 245deg,
-    transparent 360deg
-  );
-
-  animation: movingBorder 4s linear infinite;
-
-  z-index: -2;
-}
-
-
-/* Inner dark area */
-
-.auth-card::after {
-  content: "";
-
-  position: absolute;
-
-  inset: 2px;
-
-  background: #202020;
-
-  border-radius: 2px;
-
-  z-index: -1;
-}
-
-
-@keyframes movingBorder {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-
-/* =========================================================
-   WELCOME SECTION
-   ========================================================= */
-
-.auth-welcome {
-  position: relative;
-
-  width: 100%;
-
-  text-align: center;
-
-  margin: 0;
-
-  padding: 58px 20px 0;
-
-  box-sizing: border-box;
-
-  color: white;
-
-  z-index: 2;
-}
-
-
-.auth-welcome h2 {
-  margin: 0;
-
-  color: #ffffff;
-
-  font-family: Georgia, "Times New Roman", serif;
-
-  font-size: 30px;
-
-  font-weight: 700;
-
-  line-height: 1.2;
-
-  letter-spacing: 0.5px;
-
-  text-align: center;
-
-  text-shadow:
-    0 0 8px rgba(255, 255, 255, 0.15);
-}
-
-
-.auth-welcome p {
-  margin: 10px 0 0;
-
-  color: #a9b0bc;
-
-  font-family: "Poppins", sans-serif;
-
-  font-size: 12.5px;
-
-  line-height: 1.5;
-
-  text-align: center;
-}
-
-
-/* =========================================================
-   LOGIN FORM
-   ========================================================= */
-
-.auth-form {
-  position: relative;
-
-  width: 100%;
-
-  max-width: 350px;
-
-  margin: 0 auto;
-  margin-top: 50px;
-
-  padding: 0 20px 50px;
-
-  box-sizing: border-box;
-
-  display: flex;
-
   flex-direction: column;
-
-  align-items: center;
-
-  z-index: 2;
+  overflow: hidden;
 }
 
-
-/* Login heading */
-
-.auth-form h3 {
-  width: 100%;
-
-  margin: 105px 0 48px;
-
-  text-align: center;
-
-  color: #ffffff;
-
-  font-family: Georgia, "Times New Roman", serif;
-
-  font-size: 32px;
-
-  font-weight: 700;
-
-  line-height: 1;
-
-  text-transform: lowercase;
-
-  text-shadow:
-    0 0 8px rgba(255, 255, 255, 0.12);
-}
-
-
-/* =========================================================
-   INPUT CONTAINER
-   ========================================================= */
-
-.auth-input {
-  position: relative;
-
-  width: 100%;
-
-  margin-bottom: 30px;
-
-  display: flex;
-
-  align-items: center;
-}
-
-
-/* =========================================================
-   INPUT
-   ========================================================= */
-
-.auth-input input {
-  width: 100%;
-
-  height: 45px;
-
-  padding: 7px 35px 7px 2px;
-
-  box-sizing: border-box;
-
-  background: transparent;
-
-  border: none;
-
-  border-bottom: 2px solid #eeeeee;
-
-  outline: none;
-
-  color: #ffffff;
-
-  font-family: Georgia, "Times New Roman", serif;
-
-  font-size: 16px;
-
-  transition:
-    border-color 0.25s ease,
-    box-shadow 0.25s ease;
-}
-
-
-.auth-input input::placeholder {
-  color: #eeeeee;
-
-  opacity: 1;
-
-  font-family: Georgia, "Times New Roman", serif;
-
-  font-size: 15px;
-}
-
-
-.auth-input input:focus {
-  border-bottom-color: #20d9ff;
-
-  box-shadow:
-    0 3px 10px rgba(32, 217, 255, 0.25);
-}
-
-
-/* =========================================================
-   ICON
-   ========================================================= */
-
-.auth-input-icon {
+.al-brand-panel::after {
+  content: '';
   position: absolute;
+  width: 420px;
+  height: 420px;
+  right: -140px;
+  bottom: -140px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(245, 180, 0, 0.14) 0%, transparent 65%);
+}
 
-  right: 2px;
-
-  top: 50%;
-
-  transform: translateY(-50%);
-
-  display: flex;
-
+.al-back-link {
+  display: inline-flex;
   align-items: center;
+  gap: 8px;
+  color: #8b98b4;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  width: fit-content;
+  transition: color 0.15s ease;
+  z-index: 1;
+}
 
+.al-back-link:hover {
+  color: #ffffff;
+}
+
+.al-brand-content {
+  margin: auto 0;
+  z-index: 1;
+}
+
+.al-logo {
+  width: 74px;
+  height: 74px;
+  border-radius: 20px;
+  object-fit: cover;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.al-brand-content h1 {
+  margin: 28px 0 0;
+  font-size: 30px;
+  font-weight: 750;
+  letter-spacing: -0.5px;
+  color: #ffffff;
+}
+
+.al-brand-content > p {
+  margin: 14px 0 0;
+  color: #8b98b4;
+  font-size: 14.5px;
+  line-height: 1.65;
+  max-width: 400px;
+}
+
+.al-features {
+  margin-top: 34px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.al-feature {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.al-feature-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: rgba(245, 180, 0, 0.14);
+  color: #f5b400;
+  display: flex;
+  align-items: center;
   justify-content: center;
+  font-size: 17px;
+  flex-shrink: 0;
+}
 
-  color: #20d9ff;
+.al-feature strong {
+  display: block;
+  font-size: 13.5px;
+  color: #e6ecf7;
+}
 
+.al-feature span {
+  font-size: 12px;
+  color: #8b98b4;
+}
+
+.al-brand-foot {
+  font-size: 12px;
+  color: #4e5d7c;
+  z-index: 1;
+}
+
+/* ---------- Form panel ---------- */
+
+.al-form-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  background: #f4f6fb;
+}
+
+.al-form-card {
+  width: 100%;
+  max-width: 400px;
+}
+
+.al-form-head h2 {
+  font-size: 24px;
+  font-weight: 750;
+  letter-spacing: -0.4px;
+  margin: 0;
+  color: #0f172a;
+}
+
+.al-form-head p {
+  margin: 7px 0 0;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.al-form-head {
+  margin-bottom: 30px;
+}
+
+.al-error {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+  font-size: 13px;
+  padding: 11px 14px;
+  border-radius: 10px;
+  margin-bottom: 18px;
+}
+
+.al-field {
+  margin-bottom: 18px;
+}
+
+.al-field label {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 7px;
+}
+
+.al-input-wrap {
+  position: relative;
+}
+
+.al-input-icon {
+  position: absolute;
+  left: 13px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  font-size: 15px;
+  display: flex;
   pointer-events: none;
 }
 
+.al-input-wrap input {
+  width: 100%;
+  padding: 12px 44px 12px 40px;
+  border: 1px solid #d7deea;
+  border-radius: 11px;
+  background: #ffffff;
+  font-size: 14px;
+  font-family: inherit;
+  color: #0f172a;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
 
-/* =========================================================
-   PASSWORD EYE
-   ========================================================= */
+.al-input-wrap input::placeholder {
+  color: #a8b2c7;
+}
 
-.auth-eye-btn {
+.al-input-wrap input:focus {
+  border-color: #f5b400;
+  box-shadow: 0 0 0 3px rgba(245, 180, 0, 0.18);
+}
+
+.al-eye {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
   background: transparent;
-
   border: none;
-
-  padding: 3px;
-
+  color: #94a3b8;
   cursor: pointer;
-
-  pointer-events: auto;
-
-  color: #20d9ff;
-
-  transition:
-    color 0.2s ease,
-    transform 0.2s ease;
+  font-size: 15px;
+  padding: 6px;
+  display: flex;
+  border-radius: 8px;
 }
 
-
-.auth-eye-btn:hover {
-  color: #ffffff;
-
-  transform: translateY(-50%) scale(1.08);
+.al-eye:hover {
+  color: #0f172a;
 }
 
-
-/* =========================================================
-   ERROR
-   ========================================================= */
-
-.auth-error {
+.al-submit {
   width: 100%;
-
-  margin: -10px 0 12px;
-
-  color: #ff5c70;
-
-  font-size: 12px;
-
-  text-align: center;
-}
-
-
-/* =========================================================
-   LOGIN BUTTON
-   ========================================================= */
-
-.auth-submit-btn {
-  width: 100%;
-
-  height: 48px;
-
-  margin-top: 5px;
-
+  margin-top: 8px;
+  padding: 12.5px;
   border: none;
-
-  border-radius: 30px;
-
-  background: #19c9e8;
-
-  color: #071016;
-
-  font-family: Arial, sans-serif;
-
-  font-size: 16px;
-
-  font-weight: 500;
-
+  border-radius: 11px;
+  background: #f5b400;
+  color: #241a00;
+  font-size: 14.5px;
+  font-weight: 700;
+  font-family: inherit;
   cursor: pointer;
-
-  box-shadow:
-    0 0 12px rgba(25, 201, 232, 0.8),
-    0 0 28px rgba(25, 201, 232, 0.35);
-
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    background 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  box-shadow: 0 1px 2px rgba(180, 130, 0, 0.25);
+  transition: background 0.15s ease, transform 0.08s ease;
 }
 
-
-.auth-submit-btn:hover:not(:disabled) {
-  background: #27dafa;
-
-  transform: translateY(-2px);
-
-  box-shadow:
-    0 0 16px rgba(25, 201, 232, 0.9),
-    0 0 35px rgba(25, 201, 232, 0.5);
+.al-submit:hover:not(:disabled) {
+  background: #ffc61a;
 }
 
-
-.auth-submit-btn:active:not(:disabled) {
-  transform: translateY(0);
+.al-submit:active:not(:disabled) {
+  transform: translateY(1px);
 }
 
-
-.auth-submit-btn:disabled {
+.al-submit:disabled {
   opacity: 0.6;
-
   cursor: not-allowed;
 }
 
+.al-spinner {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2.5px solid rgba(36, 26, 0, 0.3);
+  border-top-color: #241a00;
+  animation: al-spin 0.7s linear infinite;
+}
 
-/* =========================================================
-   MOBILE
-   ========================================================= */
+@keyframes al-spin {
+  to { transform: rotate(360deg); }
+}
 
-@media (max-width: 600px) {
+.al-hint {
+  text-align: center;
+  font-size: 12px;
+  color: #94a3b8;
+  margin-top: 22px;
+}
 
-  .admin-login-page {
-    padding: 15px;
+/* ---------- Responsive ---------- */
+
+@media (max-width: 860px) {
+  .al-grid {
+    grid-template-columns: 1fr;
   }
 
-
-  .auth-card {
-    max-width: 430px;
-
-    min-height: 560px;
+  .al-brand-panel {
+    padding: 24px 28px 30px;
+    min-height: auto;
   }
 
-
-  .auth-welcome {
-    padding-top: 45px;
+  .al-brand-content {
+    margin: 40px 0 30px;
   }
 
-
-  .auth-welcome h2 {
-    font-size: 27px;
+  .al-logo {
+    width: 56px;
+    height: 56px;
+    border-radius: 15px;
   }
 
-
-  .auth-welcome p {
-    font-size: 11.5px;
+  .al-brand-content h1 {
+    font-size: 23px;
+    margin-top: 20px;
   }
 
-
-  .auth-form {
-    max-width: 330px;
-
-    padding-left: 15px;
-    padding-right: 15px;
+  .al-features {
+    display: none;
   }
 
-
-  .auth-form h3 {
-    margin-top: 85px;
-
-    margin-bottom: 40px;
-
-    font-size: 29px;
+  .al-form-panel {
+    padding: 34px 24px 50px;
   }
 }
 
-
-/* =========================================================
-   SMALL MOBILE
-   ========================================================= */
-
-@media (max-width: 380px) {
-
-  .auth-card {
-    min-height: 530px;
-  }
-
-
-  .auth-welcome {
-    padding-top: 45px;
-  }
-
-
-  .auth-welcome h2 {
-    font-size: 24px;
-  }
-
-
-  .auth-form {
-    max-width: 300px;
-  }
-
-
-  .auth-form h3 {
-    margin-top: 70px;
-
-    margin-bottom: 35px;
-
-    font-size: 27px;
-  }
-
-
-  .auth-submit-btn {
-    height: 45px;
+@media (max-width: 420px) {
+  .al-form-card {
+    max-width: 100%;
   }
 }

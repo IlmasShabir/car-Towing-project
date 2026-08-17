@@ -9,7 +9,7 @@ import Contact from './pages/Contact';
 import Reviews from './pages/Reviews';
 import FAQ from './pages/FAQ';
 import AdminLogin from './pages/admin/AdminLogin';
-import AdminDashboard from './pages/admin/AdminDashboard';
+import AdminApp from './admin/AdminApp';
 import ProtectedAdminRoute from './components/ProtectedAdminRoute';
 
 const ScrollToTop = () => {
@@ -37,10 +37,10 @@ const App = () => {
         <Route path="/faq" element={<FAQ />} />
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route
-          path="/admin/dashboard"
+          path="/admin/*"
           element={
             <ProtectedAdminRoute>
-              <AdminDashboard />
+              <AdminApp />
             </ProtectedAdminRoute>
           }
         />
