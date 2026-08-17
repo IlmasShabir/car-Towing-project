@@ -559,16 +559,23 @@
   padding: 6px;
 }
 
+.a-profile{
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  padding-left: 12px;
+}
+
 .a-profile-head {
   display: flex;
   align-items: center;
   gap: 12px;
   padding: 10px 12px;
-  border-bottom: 1px solid var(--a-border);
   margin-bottom: 6px;
 }
 
 .a-profile-head strong {
+  margin-top: 4px;
   font-size: 13.5px;
   display: block;
 }
