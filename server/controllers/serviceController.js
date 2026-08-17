@@ -2,6 +2,32 @@ const Service = require('../models/Service');
 const path = require('path');
 const fs = require('fs');
 
+const cleanFeature = (value) =>
+  String(value)
+    .trim()
+    .replace(/^"|"$/g, '')
+    .replace(/^\[|\]$/g, '')
+    .trim();
+
+const parseFeatures = (value) => {
+  if (Array.isArray(value)) {
+    return value.map(cleanFeature).filter(Boolean);
+  }
+  if (typeof value === 'string' && value.trim()) {
+    try {
+      const parsed = JSON.parse(value);
+      if (Array.isArray(parsed)) return parseFeatures(parsed);
+    } catch {
+      // Not valid JSON — split manually
+    }
+    return value
+      .split(',')
+      .map(cleanFeature)
+      .filter(Boolean);
+  }
+  return [];
+};
+
 const getServices = async (req, res) => {
   try {
     const services = await Service.find().sort({ createdAt: 1 });
@@ -30,7 +56,14 @@ const createService = async (req, res) => {
 
     const image = req.processedImage || req.body.image || '';
 
-    const service = await Service.create({ slug, image, name, shortDesc, longDesc, features });
+    const service = await Service.create({
+      slug,
+      image,
+      name,
+      shortDesc,
+      longDesc,
+      features: parseFeatures(features),
+    });
     res.status(201).json(service);
   } catch (error) {
     if (req.processedImage) {
@@ -63,6 +96,9 @@ const updateService = async (req, res) => {
     }
 
     Object.assign(service, req.body);
+    if (req.body.features !== undefined) {
+      service.features = parseFeatures(req.body.features);
+    }
     await service.save();
     res.json(service);
   } catch (error) {

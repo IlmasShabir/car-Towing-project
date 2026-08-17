@@ -7,6 +7,7 @@ import CTABanner from '../components/CTABanner';
 import Footer from '../components/Footer';
 import { getImage } from '../utils/getImage';
 import { getServiceImageUrl } from '../utils/imageUrl';
+import { normalizeFeatures } from '../utils/features';
 import truckImage from '../assets/images/tow-truck-dubai.jpg';
 import { useServices } from '../context/ServicesContext';
 import './ServiceDetail.css';
@@ -56,8 +57,8 @@ const ServiceDetail = () => {
             <h2>{service.name}</h2>
             <p className="service-detail-desc">{service.longDesc}</p>
             <ul className="service-detail-features">
-              {(service.features || []).map((f) => (
-                <li key={f}>✓ {f}</li>
+              {normalizeFeatures(service.features).map((f) => (
+                <li key={f}><span className="service-feature-tick">✓</span> {f}</li>
               ))}
             </ul>
             <a href="tel:+971586729393" className="service-detail-cta">

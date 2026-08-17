@@ -3,6 +3,7 @@ import { FiTool, FiTrash2, FiEdit2, FiPlus, FiRefreshCw, FiImage, FiUpload } fro
 import { getServices, createService, updateService, deleteService } from '../../api/serviceApi';
 import { getServiceImageUrl } from '../../utils/imageUrl';
 import seedServices from '../../data/services';
+import { normalizeFeatures } from '../../utils/features';
 import { useToast } from '../components/Toast';
 import {
   Button,
@@ -36,7 +37,7 @@ const ServiceFormModal = ({ open, onClose, editing, onSaved }) => {
         name: editing.name,
         shortDesc: editing.shortDesc,
         longDesc: editing.longDesc,
-        features: (editing.features || []).join(', '),
+        features: normalizeFeatures(editing.features).join(', '),
       });
       setImagePreview(getServiceImageUrl(editing));
     } else {
@@ -201,7 +202,7 @@ const ServiceFormModal = ({ open, onClose, editing, onSaved }) => {
           {errors.longDesc && <span className="a-input-error">{errors.longDesc}</span>}
         </Field>
 
-        <Field label="Features" hint="Comma separated — e.g. 24/7 Availability, Fast Response">
+        <Field label="Features" hint="Comma separated, no quotes — e.g. 24/7 Availability, Fast Response. Shown on the website with a tick.">
           <Input
             value={form.features}
             onChange={(e) => setForm({ ...form, features: e.target.value })}
