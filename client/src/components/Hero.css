@@ -229,7 +229,7 @@
 
 @media (max-width: 500px) {
   .hero-section{
-    background:url("../assets/images/mobile_bg.jpeg") center/cover no-repeat;
+    background:url("../assets/images/mobile_bg.webp") center/cover no-repeat;
   }
   .hero-heading {
     font-size: 36px;
