@@ -42,6 +42,11 @@ const Contact = () => {
               name="description"
               content="Need car towing in Dubai? Get fast 24/7 towing and emergency vehicle recovery with Usama Car Towing."
             />
+    
+            <link
+              rel="canonical"
+              href="https://cartowingservicedubai.com/car-recovery-near-me"
+            />
           </Helmet>
       <Navbar />
 

@@ -28,11 +28,11 @@ const App = () => {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/car-recovery-service-dubai" element={<Services />} />
+        <Route path="/services" element={<Services />} />
         <Route path="/services/:slug" element={<ServiceDetail />} />
         <Route path="/coverage-areas" element={<CoverageAreas />} />
         <Route path="/about" element={<About />} />
-        <Route path="/car-recovery-near-me" element={<Contact />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/reviews" element={<Reviews />} />
         <Route path="/faq" element={<FAQ />} />
         <Route path="/admin/login" element={<AdminLogin />} />
