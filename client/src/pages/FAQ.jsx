@@ -5,11 +5,16 @@ import Reveal from "../components/Reveal";
 import FAQAccordion from "../components/FAQAccordion";
 import Footer from "../components/Footer";
 import truckImage from "../assets/images/tow-truck-dubai.jpg";
+import { Helmet } from "react-helmet-async";
 import "./FAQ.css";
 
 const FAQ = () => {
   return (
     <>
+      <Helmet>
+        <title>FAQ | Usama Car Towing</title>
+        <meta name="description" content="Answers to common questions about our 24/7 car towing and roadside assistance service in Dubai." />
+      </Helmet>
       <Navbar />
       <PageHeader title="FREQUENTLY ASKED QUESTIONS" crumb="FAQ" />
 

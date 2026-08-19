@@ -5,6 +5,7 @@ import Reveal from "../components/Reveal";
 import StatsBar from "../components/StatsBar";
 import Footer from "../components/Footer";
 import team from "../assets/images/team.jpg";
+import { Helmet } from "react-helmet-async";
 import "./About.css";
 
 const points = [
@@ -18,6 +19,10 @@ const points = [
 const About = () => {
   return (
     <>
+      <Helmet>
+        <title>About Us | Usama Car Towing</title>
+        <meta name="description" content="Learn about Usama Car Towing - Dubai's most trusted 24/7 towing service with a modern fleet and experienced team." />
+      </Helmet>
       <Navbar />
       <PageHeader title="ABOUT US" crumb="About Us" />
 

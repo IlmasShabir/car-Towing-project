@@ -8,10 +8,15 @@ import CoverageMap from '../components/CoverageMap';
 import Fleet from '../components/Fleet';
 import Testimonials from '../components/Testimonials';
 import Footer from '../components/Footer';
+import { Helmet } from 'react-helmet-async';
 
 const Home = () => {
   return (
     <>
+      <Helmet>
+        <title>Usama Car Towing | 24/7 Towing Service in Dubai</title>
+        <meta name="description" content="24/7 premium car towing service in Dubai. Fast, reliable and affordable tow truck service available around the clock." />
+      </Helmet>
       <Navbar />
       <Hero />
       <WhyChooseUs />

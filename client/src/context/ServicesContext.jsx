@@ -7,6 +7,7 @@ const ServicesContext = createContext(null);
 export const ServicesProvider = ({ children }) => {
   const [services, setServices] = useState(seedServices);
   const [loading, setLoading] = useState(true);
+  const [isShowDropdown, setIsShowDropDown] = useState(false);
 
   useEffect(() => {
     let mounted = true;
@@ -35,7 +36,16 @@ export const ServicesProvider = ({ children }) => {
   };
 
   return (
-    <ServicesContext.Provider value={{ services, loading, refreshServices }}>
+    <ServicesContext.Provider
+      value={{
+        services,
+        loading,
+        setServices,
+        setIsShowDropDown,
+        isShowDropdown,
+        refreshServices,
+      }}
+    >
       {children}
     </ServicesContext.Provider>
   );

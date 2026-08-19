@@ -10,6 +10,7 @@ import { getServiceImageUrl } from '../utils/imageUrl';
 import { normalizeFeatures } from '../utils/features';
 import truckImage from '../assets/images/tow-truck-dubai.jpg';
 import { useServices } from '../context/ServicesContext';
+import { Helmet } from 'react-helmet-async';
 import './ServiceDetail.css';
 
 const ServiceDetail = () => {
@@ -21,6 +22,9 @@ const ServiceDetail = () => {
   if (loading || !service) {
     return (
       <>
+        <Helmet>
+          <title>Services | Usama Car Towing</title>
+        </Helmet>
         <Navbar />
         <PageHeader title="Loading..." crumb="Services" />
         <section className="service-detail"><p>Loading...</p></section>
@@ -37,6 +41,10 @@ const ServiceDetail = () => {
 
   return (
     <>
+      <Helmet>
+        <title>{service.name} | Usama Car Towing</title>
+        <meta name="description" content={service.longDesc} />
+      </Helmet>
       <Navbar />
       <PageHeader title={service.name} crumb={`Services / ${service.name}`} />
 
