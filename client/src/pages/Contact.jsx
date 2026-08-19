@@ -5,6 +5,7 @@ import Reveal from '../components/Reveal';
 import ContactForm from '../components/ContactForm';
 import Footer from '../components/Footer';
 import './Contact.css';
+import { Helmet } from "react-helmet-async";
 
 const info = [
   {
@@ -34,6 +35,14 @@ const info = [
 const Contact = () => {
   return (
     <>
+     <Helmet>
+            <title>Car Towing in Dubai | 24/7 Tow Truck Service</title>
+    
+            <meta
+              name="description"
+              content="Need car towing in Dubai? Get fast 24/7 towing and emergency vehicle recovery with Usama Car Towing."
+            />
+          </Helmet>
       <Navbar />
 
       <PageHeader
