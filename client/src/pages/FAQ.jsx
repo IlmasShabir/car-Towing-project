@@ -12,7 +12,7 @@ const FAQ = () => {
   return (
     <>
       <Helmet>
-        <title>FAQ | Usama Car Towing</title>
+        <title>Towing Service FAQs | Usama Car Towing</title>
         <meta name="description" content="Answers to common questions about our 24/7 car towing and roadside assistance service in Dubai." />
       </Helmet>
       <Navbar />

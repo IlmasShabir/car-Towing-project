@@ -20,7 +20,7 @@ const About = () => {
   return (
     <>
       <Helmet>
-        <title>About Us | Usama Car Towing</title>
+        <title>Trusted Towing Services in Dubai | Usama Car Towing</title>
         <meta name="description" content="Learn about Usama Car Towing - Dubai's most trusted 24/7 towing service with a modern fleet and experienced team." />
       </Helmet>
       <Navbar />

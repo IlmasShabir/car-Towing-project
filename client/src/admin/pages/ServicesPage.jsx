@@ -18,7 +18,7 @@ import {
   Textarea,
 } from '../components/ui';
 
-const emptyForm = { slug: '', name: '', shortDesc: '', longDesc: '', features: '' };
+const emptyForm = { slug: '', name: '', seoTitle: '', shortDesc: '', longDesc: '', features: '' };
 
 const ServiceFormModal = ({ open, onClose, editing, onSaved }) => {
   const [form, setForm] = useState(emptyForm);
@@ -35,6 +35,7 @@ const ServiceFormModal = ({ open, onClose, editing, onSaved }) => {
       setForm({
         slug: editing.slug,
         name: editing.name,
+        seoTitle: editing.seoTitle || '',
         shortDesc: editing.shortDesc,
         longDesc: editing.longDesc,
         features: normalizeFeatures(editing.features).join(', '),
@@ -77,6 +78,7 @@ const ServiceFormModal = ({ open, onClose, editing, onSaved }) => {
     const formData = new FormData();
     formData.append('slug', form.slug.trim().toLowerCase().replace(/\s+/g, '-'));
     formData.append('name', form.name.trim());
+    if (form.seoTitle.trim()) formData.append('seoTitle', form.seoTitle.trim());
     formData.append('shortDesc', form.shortDesc.trim());
     formData.append('longDesc', form.longDesc.trim());
     formData.append(
@@ -181,6 +183,14 @@ const ServiceFormModal = ({ open, onClose, editing, onSaved }) => {
           {errors.name && <span className="a-input-error">{errors.name}</span>}
         </Field>
 
+        <Field label="SEO Title" hint="Optional. Used as the browser tab title for this service page.">
+          <Input
+            value={form.seoTitle}
+            onChange={(e) => setForm({ ...form, seoTitle: e.target.value })}
+            placeholder="Emergency Towing Dubai | 24/7 Usama Car Towing"
+          />
+        </Field>
+
         <Field label="Short description" required hint="Shown on service cards">
           <Input
             value={form.shortDesc}
@@ -258,20 +268,33 @@ const ServicesPage = () => {
     setImporting(true);
     try {
       const created = [];
+      const updated = [];
       for (const s of seedServices) {
-        const existing = services.some((item) => item.slug === s.slug);
-        if (existing) continue;
+        const existing = services.find((item) => item.slug === s.slug);
+        if (existing) {
+          if (!existing.seoTitle && s.seoTitle) {
+            const formData = new FormData();
+            formData.append('seoTitle', s.seoTitle);
+            await updateService(existing._id, formData);
+            updated.push(existing.name);
+          }
+          continue;
+        }
         const service = await createService({
           slug: s.slug,
           image: '',
           name: s.name,
+          seoTitle: s.seoTitle || '',
           shortDesc: s.shortDesc,
           longDesc: s.longDesc,
           features: s.features,
         });
         created.push(service);
       }
-      toast.success(created.length ? `${created.length} default services imported` : 'Nothing to import — services already exist');
+      const msgs = [];
+      if (created.length) msgs.push(`${created.length} imported`);
+      if (updated.length) msgs.push(`${updated.length} updated with SEO titles`);
+      toast.success(msgs.length ? msgs.join(', ') : 'All services up to date');
       load();
     } catch (err) {
       toast.error('Import failed', err.message);

@@ -2,6 +2,7 @@ const services = [
   {
     slug: 'emergency-towing',
     name: 'Emergency Towing',
+    seoTitle:'Emergency Towing service in Dubai | 24/7 Usama Car Towing',
     shortDesc: 'Quick towing for all types of vehicles',
     longDesc:
       'Our emergency towing service is available 24/7 to assist you wherever you need us. Whether you are stuck on the road due to a breakdown, accident, or other situation, our professional team will reach you quickly and tow your vehicle safely to your desired location.',
@@ -15,7 +16,7 @@ const services = [
   },
   {
     slug: 'roadside-assistance',
-
+    seoTitle:'Roadside Assistance in Dubai | 24/7 Usama Car Towing',
     name: 'Roadside Assistance',
     shortDesc: 'Help on the road, anywhere anytime',
     longDesc:
@@ -30,6 +31,7 @@ const services = [
   {
     slug: 'battery-jump-start',
     name: 'Battery Jump Start',
+    seoTitle:'Car Breakdown Service in Dubai | Usama Car Towing',
     shortDesc: "We'll get your battery back to life",
     longDesc:
       'A dead battery can happen anytime. Our team arrives with professional jump-start equipment to get your car running again in minutes, or advise on a replacement if needed.',
@@ -38,6 +40,7 @@ const services = [
   {
     slug: 'commercial-vehicle-towing',
     name: 'Commercial Vehicle Towing',
+    seoTitle:'Commercial Vehicle Towing servicein Dubai | Usama Car Towing',
     shortDesc: 'Trusted towing solutions for commercial vehicles.',
     longDesc:
       'When you need to move your commercial vehicles or heavy equipment from one site to another, our professional team provides safe, reliable, and efficient transportation services. We handle the loading, transportation, and delivery of your vehicles with care, ensuring they reach the destination safely and on time.',
@@ -46,6 +49,7 @@ const services = [
   {
     slug: 'heavy-vehicle-recovery',
     name: 'Heavy Vehicle Recovery',
+    seoTitle:'Heavy Vehicle towing & Recovery in  Dubai | Usama Car Towing',
     shortDesc: 'Recovery from sand or any situation',
     longDesc:
       'Whether your car is stuck in sand, a ditch, or a tricky spot, our recovery team has the right equipment to safely pull your vehicle out without further damage.',
@@ -54,6 +58,7 @@ const services = [
   {
     slug: 'luxury-car-transport',
     name: 'Luxury Car Transport',
+    seoTitle:'Luxury Car Transport service in Dubai | Usama Car Towing',
     shortDesc: 'Special care for luxury and exotic cars',
     longDesc:
       'Luxury and exotic vehicles need extra care. Our enclosed and flatbed transport options keep your car secure and scratch-free from pickup to drop-off.',
@@ -62,6 +67,7 @@ const services = [
   {
     slug: 'motorcycle-towing',
     name: 'Motorcycle Towing',
+    seoTitle:'Motorcycle Towing in Dubai | Usama Car Towing',
     shortDesc: 'Safe towing for motorcycles',
     longDesc:
       'Motorcycles need specialised towing equipment to avoid damage. Our team uses purpose-built ramps and straps to transport your bike safely.',
@@ -70,6 +76,7 @@ const services = [
   {
     slug: 'accident-recovery',
     name: 'Accident Recovery',
+    seoTitle:'Accident Recovery in Dubai | Usama Car Towing',
     shortDesc: 'Professional accident recovery service',
     longDesc:
       'After an accident, we help recover and transport your vehicle safely and quickly, coordinating with you every step of the way during a stressful time.',

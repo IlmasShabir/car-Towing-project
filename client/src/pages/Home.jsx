@@ -14,7 +14,7 @@ const Home = () => {
   return (
     <>
       <Helmet>
-        <title>Usama Car Towing | 24/7 Towing Service in Dubai</title>
+        <title>Towing Services in Dubai | Usama Car Towing</title>
         <meta name="description" content="24/7 premium car towing service in Dubai. Fast, reliable and affordable tow truck service available around the clock." />
       </Helmet>
       <Navbar />

@@ -10,7 +10,7 @@ const CoverageAreas = () => {
   return (
     <>
       <Helmet>
-        <title>Coverage Area | Usama Car Towing</title>
+        <title>Best Towing Services Near Me in Dubai | Usama Car Towing</title>
         <meta name="description" content="Check the areas we cover across Dubai for fast, 24/7 car towing and roadside assistance." />
       </Helmet>
       <Navbar />

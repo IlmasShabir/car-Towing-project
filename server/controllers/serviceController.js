@@ -39,7 +39,7 @@ const getServices = async (req, res) => {
 
 const createService = async (req, res) => {
   try {
-    const { slug, name, shortDesc, longDesc, features } = req.body;
+    const { slug, name, seoTitle, shortDesc, longDesc, features } = req.body;
 
     if (!slug || !name || !shortDesc || !longDesc) {
       return res.status(400).json({ message: 'Slug, name, short and long description are required' });
@@ -60,6 +60,7 @@ const createService = async (req, res) => {
       slug,
       image,
       name,
+      seoTitle,
       shortDesc,
       longDesc,
       features: parseFeatures(features),

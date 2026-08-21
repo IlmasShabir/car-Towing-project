@@ -36,7 +36,7 @@ const Contact = () => {
   return (
     <>
      <Helmet>
-            <title>Car Towing in Dubai | 24/7 Tow Truck Service</title>
+            <title>Contact Us | Usama Car Towing</title>
     
             <meta
               name="description"

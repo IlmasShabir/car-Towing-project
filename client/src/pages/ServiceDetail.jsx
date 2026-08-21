@@ -19,15 +19,29 @@ const ServiceDetail = () => {
 
   const service = services.find((s) => s.slug === slug) || services[0];
 
-  if (loading || !service) {
+  if (loading) {
     return (
       <>
         <Helmet>
-          <title>Services | Usama Car Towing</title>
+          <title>Loading... | Usama Car Towing</title>
         </Helmet>
         <Navbar />
         <PageHeader title="Loading..." crumb="Services" />
         <section className="service-detail"><p>Loading...</p></section>
+        <Footer />
+      </>
+    );
+  }
+
+  if (!service) {
+    return (
+      <>
+        <Helmet>
+          <title>Service Not Found | Usama Car Towing</title>
+        </Helmet>
+        <Navbar />
+        <PageHeader title="Service Not Found" crumb="Services" />
+        <section className="service-detail"><p>The requested service could not be found. <Link to="/services">View all services</Link></p></section>
         <Footer />
       </>
     );
@@ -42,7 +56,7 @@ const ServiceDetail = () => {
   return (
     <>
       <Helmet>
-        <title>{service.name} | Usama Car Towing</title>
+        <title>{service.seoTitle || `${service.name} | Usama Car Towing`}</title>
         <meta name="description" content={service.longDesc} />
       </Helmet>
       <Navbar />
@@ -62,7 +76,7 @@ const ServiceDetail = () => {
           </Reveal>
 
           <Reveal direction="right" delay={150} className="service-detail-content">
-            <h2>{service.name}</h2>
+            <h2 className="service-detail-title">{service.seoTitle || service.name}</h2>
             <p className="service-detail-desc">{service.longDesc}</p>
             <ul className="service-detail-features">
               {normalizeFeatures(service.features).map((f) => (
