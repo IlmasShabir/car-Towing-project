@@ -76,7 +76,7 @@ const ServiceDetail = () => {
           </Reveal>
 
           <Reveal direction="right" delay={150} className="service-detail-content">
-            <h2 className="service-detail-title">{service.seoTitle || service.name}</h2>
+            <h2 className="service-detail-title">{ service.name}</h2>
             <p className="service-detail-desc">{service.longDesc}</p>
             <ul className="service-detail-features">
               {normalizeFeatures(service.features).map((f) => (
