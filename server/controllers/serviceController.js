@@ -28,6 +28,44 @@ const parseFeatures = (value) => {
   return [];
 };
 
+const parseStringArray = (value) => {
+  if (Array.isArray(value)) return value.map(String).filter((s) => s && s.trim());
+  if (typeof value === 'string' && value.trim()) {
+    try {
+      const parsed = JSON.parse(value);
+      if (Array.isArray(parsed)) return parsed.map(String).filter((s) => s && s.trim());
+    } catch {
+      // Not valid JSON
+    }
+    return value
+      .split(',')
+      .map((s) => String(s).trim())
+      .filter(Boolean);
+  }
+  return [];
+};
+
+const parseSections = (value) => {
+  if (typeof value === 'string' && value.trim()) {
+    try {
+      const parsed = JSON.parse(value);
+      if (Array.isArray(parsed)) return parseSections(parsed);
+    } catch {
+      return [];
+    }
+  }
+  if (!Array.isArray(value)) return [];
+  return value
+    .map((s) => ({
+      heading: typeof s.heading === 'string' ? s.heading : '',
+      paragraphs: parseStringArray(s.paragraphs),
+      bullets: parseStringArray(s.bullets),
+      afterList: typeof s.afterList === 'string' ? s.afterList : '',
+      steps: parseStringArray(s.steps),
+    }))
+    .filter((s) => s.heading || s.paragraphs.length || s.bullets.length || s.steps.length);
+};
+
 const getServices = async (req, res) => {
   try {
     const services = await Service.find().sort({ createdAt: 1 });
@@ -39,10 +77,13 @@ const getServices = async (req, res) => {
 
 const createService = async (req, res) => {
   try {
-    const { slug, name, seoTitle, shortDesc, longDesc, features } = req.body;
+    const {
+      slug, name, seoTitle, shortDesc, features,
+      h1, metaDescription, intro, sections, primaryKeyword, semanticKeywords, related,
+    } = req.body;
 
-    if (!slug || !name || !shortDesc || !longDesc) {
-      return res.status(400).json({ message: 'Slug, name, short and long description are required' });
+    if (!slug || !name || !shortDesc) {
+      return res.status(400).json({ message: 'Slug, name and short description are required' });
     }
 
     const exists = await Service.findOne({ slug });
@@ -62,8 +103,14 @@ const createService = async (req, res) => {
       name,
       seoTitle,
       shortDesc,
-      longDesc,
       features: parseFeatures(features),
+      h1,
+      metaDescription,
+      intro: parseStringArray(intro),
+      sections: parseSections(sections),
+      primaryKeyword,
+      semanticKeywords: parseStringArray(semanticKeywords),
+      related: parseStringArray(related),
     });
     res.status(201).json(service);
   } catch (error) {
@@ -99,6 +146,18 @@ const updateService = async (req, res) => {
     Object.assign(service, req.body);
     if (req.body.features !== undefined) {
       service.features = parseFeatures(req.body.features);
+    }
+    if (req.body.intro !== undefined) {
+      service.intro = parseStringArray(req.body.intro);
+    }
+    if (req.body.sections !== undefined) {
+      service.sections = parseSections(req.body.sections);
+    }
+    if (req.body.semanticKeywords !== undefined) {
+      service.semanticKeywords = parseStringArray(req.body.semanticKeywords);
+    }
+    if (req.body.related !== undefined) {
+      service.related = parseStringArray(req.body.related);
     }
     await service.save();
     res.json(service);

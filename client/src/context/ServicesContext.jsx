@@ -1,11 +1,11 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { getServices } from "../api/serviceApi";
-import seedServices from "../data/services";
+import { serviceContentList } from "../data/serviceContent";
 
 const ServicesContext = createContext(null);
 
 export const ServicesProvider = ({ children }) => {
-  const [services, setServices] = useState(seedServices);
+  const [services, setServices] = useState(serviceContentList);
   const [loading, setLoading] = useState(true);
   const [isShowDropdown, setIsShowDropDown] = useState(false);
 

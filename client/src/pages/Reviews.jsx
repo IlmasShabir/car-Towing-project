@@ -14,6 +14,8 @@ const Reviews = () => {
   const [reviews, setReviews] = useState(seedReviews);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
+  const [page, setPage] = useState(1);
+  const perPage = 4;
 
   useEffect(() => {
     getReviews()
@@ -21,10 +23,12 @@ const Reviews = () => {
         // Show live submitted reviews first, keep the seed reviews after them
         // so the page never looks empty while the database is still new.
         setReviews(data.length > 0 ? data : seedReviews);
+        setPage(1);
       })
       .catch(() => {
         // Backend not reachable yet (e.g. still in local dev) - fall back to seed data
         setReviews(seedReviews);
+        setPage(1);
       })
       .finally(() => setLoading(false));
   }, []);
@@ -32,11 +36,16 @@ const Reviews = () => {
   const handleSubmitted = (newReview) => {
     setReviews((prev) => [newReview, ...prev]);
     setShowForm(false);
+    setPage(1);
   };
 
   const avgRating = reviews.length
     ? (reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length).toFixed(1)
     : '5.0';
+
+  const pageCount = Math.max(1, Math.ceil(reviews.length / perPage));
+  const safePage = Math.min(page, pageCount);
+  const pageReviews = reviews.slice((safePage - 1) * perPage, safePage * perPage);
 
   return (
     <>
@@ -65,12 +74,36 @@ const Reviews = () => {
           <p className="reviews-loading">Loading reviews...</p>
         ) : (
           <div className="reviews-grid">
-            {reviews.map((review, i) => (
+            {pageReviews.map((review, i) => (
               <Reveal key={review._id || review.name + i} delay={(i % 4) * 90}>
                 <ReviewCard review={review} />
               </Reveal>
             ))}
           </div>
+        )}
+
+        {!loading && pageCount > 1 && (
+          <nav className="reviews-pagination" aria-label="Reviews pagination">
+            <button
+              className="reviews-page-btn"
+              onClick={() => setPage(safePage - 1)}
+              disabled={safePage <= 1}
+              aria-label="Previous page"
+            >
+              ‹
+            </button>
+            <span className="reviews-page-btn active">
+              {safePage}
+            </span>
+            <button
+              className="reviews-page-btn"
+              onClick={() => setPage(safePage + 1)}
+              disabled={safePage >= pageCount}
+              aria-label="Next page"
+            >
+              ›
+            </button>
+          </nav>
         )}
       </section>
 

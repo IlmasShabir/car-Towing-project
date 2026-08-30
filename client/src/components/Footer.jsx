@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { FaFacebookF } from 'react-icons/fa';
 import { FaTiktok } from 'react-icons/fa6';
-import seedServices from '../data/services';
+import { serviceContentList as seedServices } from '../data/serviceContent';
 import { useServices } from '../context/ServicesContext';
 import './Footer.css';
 
@@ -31,11 +31,12 @@ const Footer = () => {
           <Link to="/reviews">Reviews</Link>
           <Link to="/contact">Contact Us</Link>
           <Link to="/FAQ">FAQ</Link>
+          <a href="/sitemap.html">Sitemap</a>
         </div>
 
         <div className="footer-col">
           <h5>Our Services</h5>
-          {displayServices.slice(0, 5).map((s) => (
+          {displayServices.map((s) => (
             <Link key={s.slug} to={`/services/${s.slug}`}>
               {s.name}
             </Link>

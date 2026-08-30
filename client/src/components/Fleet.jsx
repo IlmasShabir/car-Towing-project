@@ -6,12 +6,12 @@ import truckImage from '../assets/images/tow-truck-dubai.jpg';
 import './Fleet.css';
 
 // Add photos to: src/assets/images/fleet/<slug>.jpg
-// e.g. src/assets/images/fleet/flatbed.jpg, .../motorcycle.jpg
+// e.g. src/assets/images/fleet/flatbed.jpg, .../motorcycle-towing.jpg
 const fleet = [
   { slug: 'flatbed',  name: 'Flatbed Tow Truck' },
   { slug: 'wheel-lift', name: 'Wheel Lift Tow Truck' },
   { slug: 'heavy-duty', name: 'Heavy Duty Tow Truck' },
-  { slug: 'motorcycle', name: 'Motorcycle Towing' },
+  { slug: 'motorcycle-towing', name: 'Motorcycle Towing' },
 ];
 
 const Fleet = () => (

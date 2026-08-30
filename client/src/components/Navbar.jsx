@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import seedServices from "../data/services";
+import { serviceContentList as seedServices } from "../data/serviceContent";
 import { useServices } from "../context/ServicesContext";
 import "./Navbar.css";
 import logo from "../assets/images/logo (1).webp";
