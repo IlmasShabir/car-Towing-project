@@ -22,6 +22,7 @@ const About = () => {
       <Helmet>
         <title>Trusted Towing Services in Dubai | Usama Car Towing</title>
         <meta name="description" content="Learn about Usama Car Towing - Dubai's most trusted 24/7 towing service with a modern fleet and experienced team." />
+        <link rel="canonical" href="https://cartowingservicedubai.com/about" />
       </Helmet>
       <Navbar />
       <PageHeader title="ABOUT US" crumb="About Us" />

@@ -14,6 +14,7 @@ const FAQ = () => {
       <Helmet>
         <title>Towing Service FAQs | Usama Car Towing</title>
         <meta name="description" content="Answers to common questions about our 24/7 car towing and roadside assistance service in Dubai." />
+        <link rel="canonical" href="https://cartowingservicedubai.com/faq" />
       </Helmet>
       <Navbar />
       <PageHeader title="FREQUENTLY ASKED QUESTIONS" crumb="FAQ" />

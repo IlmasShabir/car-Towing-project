@@ -121,6 +121,7 @@ import truckImage from '../assets/images/tow-truck-dubai.jpg';
 import { useServices } from '../context/ServicesContext';
 import { Helmet } from 'react-helmet-async';
 import serviceContent from '../data/serviceContent';
+import NotFound from './NotFound';
 import './ServiceDetail.css';
 
 // Renders **bold** markdown segments as <strong>
@@ -135,8 +136,8 @@ const ServiceDetail = () => {
   const { slug } = useParams();
   const { services, loading } = useServices();
 
-  const service = services.find((s) => s.slug === slug) || services[0];
-  const fallback = serviceContent[service?.slug] || serviceContent[services[0]?.slug] || null;
+  const service = services.find((s) => s.slug === slug);
+  const fallback = serviceContent[service?.slug] || null;
   const content = service
     ? {
         h1: service.h1 || fallback?.h1 || service.name,
@@ -178,17 +179,7 @@ const ServiceDetail = () => {
   }
 
   if (!service || !content) {
-    return (
-      <>
-        <Helmet>
-          <title>Service Not Found | Usama Car Towing</title>
-        </Helmet>
-        <Navbar />
-        <PageHeader title="Service Not Found" crumb="Services" />
-        <section className="service-detail"><p>The requested service could not be found. <Link to="/services">View all services</Link></p></section>
-        <Footer />
-      </>
-    );
+    return <NotFound />;
   }
 
   // Main photo priority: admin-uploaded image -> assets/images/services/<slug>.jpg -> default
@@ -211,6 +202,7 @@ const ServiceDetail = () => {
         <title>{service.seoTitle || `${service.name} | Usama Car Towing`}</title>
         <meta name="description" content={content.metaDescription || service.shortDesc} />
         {keywordList.length > 0 && <meta name="keywords" content={keywordList.join(', ')} />}
+        <link rel="canonical" href={`https://cartowingservicedubai.com/services/${service.slug}`} />
       </Helmet>
 
       <Navbar />

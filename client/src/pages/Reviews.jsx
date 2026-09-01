@@ -52,6 +52,7 @@ const Reviews = () => {
       <Helmet>
         <title>Best Towing Services in Dubai | Usama Car Towing</title>
         <meta name="description" content="Read reviews from our customers about Usama Car Towing's fast, reliable 24/7 towing service in Dubai." />
+        <link rel="canonical" href="https://cartowingservicedubai.com/reviews" />
       </Helmet>
       <Navbar />
       <PageHeader title="WHAT OUR CLIENTS SAY" crumb="Reviews" />

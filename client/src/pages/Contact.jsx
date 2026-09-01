@@ -45,7 +45,7 @@ const Contact = () => {
     
             <link
               rel="canonical"
-              href="https://cartowingservicedubai.com/car-recovery-near-me"
+              href="https://cartowingservicedubai.com/contact"
             />
           </Helmet>
       <Navbar />
