@@ -8,6 +8,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Reviews from './pages/Reviews';
 import FAQ from './pages/FAQ';
+import NotFound from './pages/NotFound';
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminApp from './admin/AdminApp';
 import ProtectedAdminRoute from './components/ProtectedAdminRoute';
@@ -44,6 +45,7 @@ const App = () => {
             </ProtectedAdminRoute>
           }
         />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
