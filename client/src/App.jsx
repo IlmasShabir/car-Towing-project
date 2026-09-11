@@ -1,19 +1,20 @@
-import { useLayoutEffect } from 'react';
+import { lazy, Suspense, useLayoutEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Home from './pages/Home';
-import Services from './pages/Services';
-import ServiceDetail from './pages/ServiceDetail';
-import CoverageAreas from './pages/CoverageAreas';
-import About from './pages/About';
-import Contact from './pages/Contact';
-import Reviews from './pages/Reviews';
-import FAQ from './pages/FAQ';
-import Blog from './pages/Blog';
-import BlogDetail from './pages/BlogDetail';
-import NotFound from './pages/NotFound';
-import AdminLogin from './pages/admin/AdminLogin';
-import AdminApp from './admin/AdminApp';
-import ProtectedAdminRoute from './components/ProtectedAdminRoute';
+
+const Services = lazy(() => import('./pages/Services'));
+const ServiceDetail = lazy(() => import('./pages/ServiceDetail'));
+const CoverageAreas = lazy(() => import('./pages/CoverageAreas'));
+const About = lazy(() => import('./pages/About'));
+const Contact = lazy(() => import('./pages/Contact'));
+const Reviews = lazy(() => import('./pages/Reviews'));
+const FAQ = lazy(() => import('./pages/FAQ'));
+const Blog = lazy(() => import('./pages/Blog'));
+const BlogDetail = lazy(() => import('./pages/BlogDetail'));
+const NotFound = lazy(() => import('./pages/NotFound'));
+const AdminLogin = lazy(() => import('./pages/admin/AdminLogin'));
+const AdminApp = lazy(() => import('./admin/AdminApp'));
+const ProtectedAdminRoute = lazy(() => import('./components/ProtectedAdminRoute'));
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -29,7 +30,25 @@ const App = () => {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <Routes>
+      <Suspense
+        fallback={
+          <div
+            style={{
+              minHeight: "100vh",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              background: "#060a14",
+              color: "#f5c542",
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "16px",
+            }}
+          >
+            Loading…
+          </div>
+        }
+      >
+        <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/services" element={<Services />} />
         <Route path="/services/:slug" element={<ServiceDetail />} />
@@ -50,7 +69,8 @@ const App = () => {
           }
         />
         <Route path="*" element={<NotFound />} />
-      </Routes>
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   );
 };
