@@ -12,11 +12,12 @@ const userSchema = new mongoose.Schema(
 );
 
 // Hash the password automatically before saving
-userSchema.pre('save', async function (next) {
-  if (!this.isModified('password')) return next();
+// Mongoose 9 (Kareem 3) dropped callback-style `next` middleware — hooks are
+// awaited directly, so no `next` parameter is used here.
+userSchema.pre('save', async function () {
+  if (!this.isModified('password')) return;
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
-  next();
 });
 
 // Compare entered password with the hashed one during login

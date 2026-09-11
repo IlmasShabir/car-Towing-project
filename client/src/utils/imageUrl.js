@@ -18,3 +18,8 @@ export const getServiceImageUrl = (service) => {
   if (!service?.image) return '';
   return getImageUrl(service.image);
 };
+
+export const getBlogImageUrl = (blog) => {
+  if (!blog?.featuredImage) return '';
+  return getImageUrl(blog.featuredImage);
+};

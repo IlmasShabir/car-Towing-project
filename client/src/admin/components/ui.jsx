@@ -172,14 +172,14 @@ const useEscape = (onClose) => {
   }, []);
 };
 
-export const Modal = ({ open, onClose, title, sub, children, footer, wide = false }) => {
+export const Modal = ({ open, onClose, title, sub, children, footer, wide = false, className = '' }) => {
   useEscape(onClose);
 
   if (!open) return null;
 
   return createPortal(
     <div className="a-overlay" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
-      <div className={`a-modal${wide ? ' wide' : ''}`} role="dialog" aria-modal="true" aria-label={title} data-od-id="admin-modal">
+      <div className={`a-modal${wide ? ' wide' : ''} ${className}`} role="dialog" aria-modal="true" aria-label={title} data-od-id="admin-modal">
         {(title || sub) && (
           <div className="a-modal-head">
             <div>

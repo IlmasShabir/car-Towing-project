@@ -8,6 +8,7 @@ const userRoutes = require("./routes/userRoutes");
 const reviewRoutes = require("./routes/reviewRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const serviceRoutes = require("./routes/serviceRoutes");
+const blogRoutes = require("./routes/blogRoutes");
 
 dotenv.config();
 connectDB();
@@ -81,6 +82,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/reviews", reviewRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/services", serviceRoutes);
+app.use("/api/blogs", blogRoutes);
 
 // Fallback error handler
 app.use((err, req, res, next) => {

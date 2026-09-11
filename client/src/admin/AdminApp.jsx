@@ -8,6 +8,7 @@ import DashboardPage from './pages/DashboardPage';
 import BookingsPage from './pages/BookingsPage';
 import ServicesPage from './pages/ServicesPage';
 import ReviewsPage from './pages/ReviewsPage';
+import BlogsPage from './pages/BlogsPage';
 import AdminsPage from './pages/AdminsPage';
 import NotificationsPage from './pages/NotificationsPage';
 
@@ -23,6 +24,7 @@ const AdminApp = () => {
                 <Route path="dashboard" element={<DashboardPage />} />
                 <Route path="bookings" element={<BookingsPage />} />
                 <Route path="services" element={<ServicesPage />} />
+                <Route path="blogs" element={<BlogsPage />} />
                 <Route path="reviews" element={<ReviewsPage />} />
                 <Route path="admins" element={<AdminsPage />} />
                 <Route path="notifications" element={<NotificationsPage />} />

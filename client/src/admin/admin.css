@@ -1368,6 +1368,7 @@
 }
 
 .a-modal.wide { max-width: 680px; }
+.blog-form-modal { max-width: 880px; }
 
 .a-modal-head {
   display: flex;

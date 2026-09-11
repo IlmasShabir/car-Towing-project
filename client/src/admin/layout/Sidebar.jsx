@@ -6,6 +6,7 @@ import {
   FiStar,
   FiUsers,
   FiBell,
+  FiEdit2,
 } from 'react-icons/fi';
 import { useNotifications } from '../NotificationsContext';
 import { useAdminSession } from '../SessionContext';
@@ -25,6 +26,7 @@ const NAV = [
     items: [
       { to: '/admin/bookings', label: 'Bookings', icon: FiClipboard },
       { to: '/admin/services', label: 'Services', icon: FiTool },
+      { to: '/admin/blogs', label: 'Blogs', icon: FiEdit2 },
       { to: '/admin/reviews', label: 'Reviews', icon: FiStar },
     ],
   },

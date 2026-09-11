@@ -55,6 +55,9 @@ const Navbar = () => {
         <li className={pathname === "/reviews" ? "active" : ""}>
           <Link to="/reviews">Reviews</Link>
         </li>
+        <li className={pathname === "/blog" ? "active" : ""}>
+          <Link to="/blog">Blog</Link>
+        </li>
         <li className={pathname === "/FAQ" ? "active" : ""}>
           <Link to="/FAQ">FAQ</Link>
         </li>
