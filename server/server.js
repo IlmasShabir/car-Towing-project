@@ -4,7 +4,6 @@ const dotenv = require("dotenv");
 const path = require("path");
 const connectDB = require("./config/db");
 const bookingRoutes = require("./routes/bookingRoutes");
-const userRoutes = require("./routes/userRoutes");
 const reviewRoutes = require("./routes/reviewRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const serviceRoutes = require("./routes/serviceRoutes");
@@ -78,7 +77,6 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.get("/health", (req, res) => res.json({ ok: true }));
 
 app.use("/api/bookings", bookingRoutes);
-app.use("/api/users", userRoutes);
 app.use("/api/reviews", reviewRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/services", serviceRoutes);

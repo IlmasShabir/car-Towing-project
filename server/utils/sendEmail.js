@@ -1,5 +1,10 @@
 const nodemailer = require('nodemailer');
 
+// Booking fields come from the public form - escape them so visitors can't
+// inject links or markup into the owner's inbox.
+const escapeHtml = (s) =>
+  String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
 // Sends a notification email to the business owner whenever a new
 // booking/contact request comes in. Uses Gmail SMTP with an App Password
 // (see DEPLOYMENT.md for how to generate one) - free, no paid service needed.
@@ -28,7 +33,7 @@ const sendBookingEmail = async (booking) => {
     ['Message', booking.message],
   ]
     .filter(([, value]) => value)
-    .map(([label, value]) => `<tr><td style="padding:6px 12px;color:#7a7f8c;">${label}</td><td style="padding:6px 12px;color:#0a0e1a;font-weight:600;">${value}</td></tr>`)
+    .map(([label, value]) => `<tr><td style="padding:6px 12px;color:#7a7f8c;">${label}</td><td style="padding:6px 12px;color:#0a0e1a;font-weight:600;">${escapeHtml(value)}</td></tr>`)
     .join('');
 
   await transporter.sendMail({
