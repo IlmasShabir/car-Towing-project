@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Reveal from './Reveal';
 import './FAQAccordion.css';
 
@@ -9,7 +9,7 @@ const faqs = [
   },
   {
     q: 'How quickly can you arrive?',
-    a: 'In most areas of Dubai, our team reaches you within 15–20 minutes of your call.',
+    a: 'Arrival time varies with your location and road conditions. Contact us for a current estimate.',
   },
   {
     q: 'Do you tow luxury cars?',

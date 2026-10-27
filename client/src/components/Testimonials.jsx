@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Reveal from './Reveal';
 import ReviewCard from './ReviewCard';
@@ -63,8 +63,8 @@ const Testimonials = () => {
         <Reveal direction="right" delay={150}>
           <CTABanner
             title="Need Emergency Towing?"
-            subtitle="We are available 24/7"
-            bullets={['Fast Response', 'Professional Team', 'Affordable Pricing']}
+            subtitle="Call or message our team to discuss the help you need."
+            bullets={['Towing', 'Vehicle Recovery', 'Roadside Assistance']}
             variant="card"
           />
         </Reveal>

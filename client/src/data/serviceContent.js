@@ -13,7 +13,7 @@ const serviceContent = {
       'Our emergency towing service is available 24/7 to assist you wherever you need us. Whether you are stuck on the road due to a breakdown, accident, or other situation, our professional team will reach you quickly and tow your vehicle safely to your desired location.',
     features: [
       '24/7 Availability',
-      '15–20 Minutes Fast Response',
+      'Arrival Time Estimates',
       'Professional & Experienced Team',
       'Safe & Secure Towing',
       'Affordable Pricing',

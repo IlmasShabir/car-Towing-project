@@ -1,14 +1,11 @@
-import React from 'react';
 import Reveal from './Reveal';
 import './WhyChooseUs.css';
 
 const items = [
-  { icon: '⚡', title: 'Fast Arrival', desc: 'We reach you in 15–20 minutes' },
-  { icon: '🛡️', title: 'Fully Insured', desc: 'Your vehicle is safe with us' },
-  { icon: '📍', title: 'All Dubai Coverage', desc: 'We cover all areas in Dubai' },
-  { icon: '💰', title: 'Affordable Prices', desc: 'Best prices with no hidden fees' },
-  { icon: '🚚', title: 'Modern Fleet', desc: 'Well maintained tow trucks' },
-  { icon: '🎧', title: '24/7 Support', desc: 'We are available anytime' },
+  { icon: '⚡', title: 'Arrival Estimates', desc: 'Contact our team for a current arrival estimate' },
+  { icon: '📍', title: 'Dubai Service', desc: 'Contact us to confirm availability in your area' },
+  { icon: '💬', title: 'Clear Quotes', desc: 'Ask our team for pricing before booking' },
+  { icon: '🚚', title: 'Towing & Recovery', desc: 'Contact our team to discuss your vehicle needs' },
 ];
 
 const WhyChooseUs = () => (

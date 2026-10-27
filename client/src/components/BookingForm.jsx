@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { createBooking } from '../api/bookingApi';
 import { buildWhatsAppLink } from '../utils/whatsapp';
 import './BookingForm.css';
@@ -68,7 +68,7 @@ const BookingForm = () => {
   return (
     <form className="booking-form-card" onSubmit={handleSubmit}>
       <h3 className="booking-form-title">Request a Tow</h3>
-      <p className="booking-form-subtitle">We'll reach you in under 15 minutes</p>
+      <p className="booking-form-subtitle">Share your location to get an arrival estimate from our team.</p>
 
       <input
         type="text"

@@ -1,4 +1,3 @@
-import React from 'react';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import WhyChooseUs from '../components/WhyChooseUs';
@@ -15,7 +14,7 @@ const Home = () => {
     <>
       <Helmet>
         <title>Towing Services in Dubai | Usama Car Towing</title>
-        <meta name="description" content="24/7 premium car towing service in Dubai. Fast, reliable and affordable tow truck service available around the clock." />
+        <meta name="description" content="Car towing, vehicle recovery and roadside assistance in Dubai. Contact Usama Car Towing for service details and an arrival estimate." />
         <link rel="canonical" href="https://cartowingservicedubai.com/" />
       </Helmet>
       <Navbar />

@@ -17,8 +17,8 @@ const Footer = () => {
             <span>USAMA CAR TOWING </span>
           </div>
           <p>
-            Professional towing services across Dubai. Fast, reliable and
-            affordable towing available 24/7.
+            Towing, vehicle recovery and roadside assistance in Dubai. Contact
+            our team to confirm availability and get an arrival estimate.
           </p>
         </div>
 
@@ -54,7 +54,7 @@ const Footer = () => {
       </a>
           <p>📍 Dubai, United Arab Emirates</p>
           <h5 className="footer-hours-title">Working Hours</h5>
-          <p>24 Hours / 7 Days a Week</p>
+          <p>Contact us for current availability</p>
         </div>
       </div>
 
