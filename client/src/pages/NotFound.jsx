@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Navbar from '../components/Navbar';
@@ -13,7 +12,7 @@ const NotFound = () => {
         <title>404 Page Not Found | Usama Car Towing</title>
         <meta
           name="description"
-          content="The page you're looking for doesn't exist or may have been moved. Usama Car Towing provides 24/7 towing and roadside assistance across Dubai. Return home or call +971 58 672 9393."
+          content="The page you're looking for doesn't exist or may have been moved. Return home or contact Usama Car Towing in Dubai."
         />
       </Helmet>
 
@@ -151,7 +150,7 @@ const NotFound = () => {
                 View Our Services
               </Link>
               <a href="tel:+971586729393" className="nf-btn nf-btn-phone">
-                📞 Call Us 24/7
+                📞 Call Us
               </a>
             </div>
           </Reveal>
@@ -162,7 +161,7 @@ const NotFound = () => {
                 Need immediate roadside assistance in Dubai?
               </p>
               <p className="notfound-trust-sub">
-                Available 24/7 across Dubai. <a href="tel:+971586729393">+971 58 672 9393</a>
+                Contact our team about service availability in Dubai. <a href="tel:+971586729393">+971 58 672 9393</a>
               </p>
             </div>
           </Reveal>

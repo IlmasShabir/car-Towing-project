@@ -1,4 +1,3 @@
-import React from "react";
 import Navbar from "../components/Navbar";
 import PageHeader from "../components/PageHeader";
 import Reveal from "../components/Reveal";
@@ -9,11 +8,10 @@ import { Helmet } from "react-helmet-async";
 import "./About.css";
 
 const points = [
-  "24/7 Premium Towing Service",
-  "Modern Fleet & Equipment",
-  "Experienced & Trained Team",
-  "Affordable & Transparent Pricing",
-  "Customer Satisfaction Guaranteed",
+  "Towing and vehicle recovery assistance",
+  "Roadside assistance for common vehicle issues",
+  "Service requests across Dubai",
+  "Contact us to discuss your vehicle and location",
 ];
 
 const About = () => {
@@ -21,7 +19,7 @@ const About = () => {
     <>
       <Helmet>
         <title>Trusted Towing Services in Dubai | Usama Car Towing</title>
-        <meta name="description" content="Learn about Usama Car Towing - Dubai's most trusted 24/7 towing service with a modern fleet and experienced team." />
+        <meta name="description" content="Learn about Usama Car Towing and the towing and roadside assistance services offered in Dubai." />
         <link rel="canonical" href="https://cartowingservicedubai.com/about" />
       </Helmet>
       <Navbar />
@@ -31,11 +29,10 @@ const About = () => {
         <div className="about-inner">
           <Reveal direction="left" className="about-text">
             <span className="about-eyebrow">ABOUT US</span>
-            <h2>Dubai's Most Trusted Towing Service</h2>
+            <h2>Towing Assistance in Dubai</h2>
             <p>
-              We are a team of professional tow truck operators dedicated to
-              providing fast, reliable and affordable towing services across
-              Dubai.
+              We provide towing and roadside assistance across Dubai. Contact
+              our team with your vehicle details and location to discuss service.
             </p>
             <ul className="about-checklist">
               {points.map((p) => (

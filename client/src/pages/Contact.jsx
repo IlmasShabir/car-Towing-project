@@ -1,4 +1,3 @@
-import React from 'react';
 import Navbar from '../components/Navbar';
 import PageHeader from '../components/PageHeader';
 import Reveal from '../components/Reveal';
@@ -27,8 +26,8 @@ const info = [
   },
   {
     icon: '🕒',
-    label: 'Working Hours',
-    value: '24 Hours / 7 Days a Week'
+    label: 'Availability',
+    value: 'Contact us to confirm current availability'
   }
 ];
 
@@ -40,7 +39,7 @@ const Contact = () => {
     
             <meta
               name="description"
-              content="Need car towing in Dubai? Get fast 24/7 towing and emergency vehicle recovery with Usama Car Towing."
+              content="Contact Usama Car Towing to discuss towing and vehicle recovery in Dubai."
             />
     
             <link
@@ -65,7 +64,7 @@ const Contact = () => {
             <h2>We're Here to Help You</h2>
 
             <p>
-              Contact us anytime for emergency towing or any inquiries.
+              Contact us about emergency towing or any inquiries.
             </p>
 
             <div className="contact-info-list">

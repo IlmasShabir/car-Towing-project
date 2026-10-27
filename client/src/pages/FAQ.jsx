@@ -1,4 +1,3 @@
-import React from "react";
 import Navbar from "../components/Navbar";
 import PageHeader from "../components/PageHeader";
 import Reveal from "../components/Reveal";
@@ -13,7 +12,7 @@ const FAQ = () => {
     <>
       <Helmet>
         <title>Towing Service FAQs | Usama Car Towing</title>
-        <meta name="description" content="Answers to common questions about our 24/7 car towing and roadside assistance service in Dubai." />
+        <meta name="description" content="Answers to common questions about car towing and roadside assistance in Dubai." />
         <link rel="canonical" href="https://cartowingservicedubai.com/faq" />
       </Helmet>
       <Navbar />

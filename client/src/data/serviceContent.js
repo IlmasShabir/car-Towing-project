@@ -7,12 +7,12 @@ const serviceContent = {
   'emergency-towing': {
     slug: 'emergency-towing',
     name: 'Emergency Towing',
-    seoTitle: 'Emergency Towing service in Dubai | 24/7 Usama Car Towing',
+    seoTitle: 'Emergency Towing service in Dubai | Usama Car Towing',
     shortDesc: 'Quick towing for all types of vehicles',
     longDesc:
-      'Our emergency towing service is available 24/7 to assist you wherever you need us. Whether you are stuck on the road due to a breakdown, accident, or other situation, our professional team will reach you quickly and tow your vehicle safely to your desired location.',
+      'Our emergency towing service helps move vehicles after a breakdown, accident, or other roadside situation. Contact us with your location and vehicle details to discuss suitable assistance.',
     features: [
-      '24/7 Availability',
+      'Availability confirmed when you contact us',
       'Arrival Time Estimates',
       'Professional & Experienced Team',
       'Safe & Secure Towing',
@@ -20,9 +20,9 @@ const serviceContent = {
     ],
     h1: 'Emergency Towing in Dubai',
     metaDescription:
-      '24/7 emergency towing service in Dubai. Our team provides fast, safe towing assistance for breakdowns, accidents and roadside emergencies across the city.',
+      'Emergency towing assistance in Dubai for breakdowns, accidents and roadside situations.',
     intro: [
-      'When your vehicle suddenly breaks down, is involved in an accident, or becomes unsafe to drive, getting professional help quickly can make a stressful situation easier to manage. Our **emergency towing service in Dubai** is available 24/7 to help move cars and other vehicles safely from the roadside to a garage, workshop, home, or another requested location.',
+      'When your vehicle breaks down, is involved in an accident, or becomes unsafe to drive, towing can help move it from the roadside to a garage, workshop, home, or another requested location. Contact us to discuss assistance.',
       'Whether you are dealing with a mechanical failure, damaged vehicle, or unexpected roadside emergency, our team can help arrange suitable towing assistance based on your vehicle and situation.',
     ],
     sections: [
@@ -53,7 +53,7 @@ const serviceContent = {
       {
         heading: 'Why Choose Our Emergency Towing Service?',
         bullets: [
-          '24/7 availability',
+          'Availability confirmed when you contact us',
           'Professional towing assistance',
           'Suitable recovery equipment',
           'Safe vehicle handling',
@@ -71,7 +71,6 @@ const serviceContent = {
     primaryKeyword: 'emergency towing Dubai',
     semanticKeywords: [
       'emergency towing service Dubai',
-      '24/7 towing Dubai',
       'emergency car recovery Dubai',
       'tow truck Dubai',
       'car towing Dubai',
@@ -82,19 +81,18 @@ const serviceContent = {
   'roadside-assistance': {
     slug: 'roadside-assistance',
     name: 'Roadside Assistance',
-    seoTitle: 'Roadside Assistance in Dubai | 24/7 Usama Car Towing',
+    seoTitle: 'Roadside Assistance in Dubai | Usama Car Towing',
     shortDesc: 'Help on the road, anywhere anytime',
     longDesc:
       'From flat tyres to minor mechanical issues, our roadside assistance team reaches you fast and gets you moving again without needing a full tow, wherever you are in Dubai.',
     features: [
-      '24/7 Availability',
+      'Availability confirmed when you contact us',
       'On-site minor repairs',
-      'Certified technicians',
       'Transparent pricing',
     ],
     h1: 'Roadside Assistance in Dubai',
     metaDescription:
-      '24/7 roadside assistance in Dubai. Help with flat tires, dead batteries, starting problems and other vehicle issues wherever you are in Dubai.',
+      'Roadside assistance in Dubai for flat tires, dead batteries, starting problems and other vehicle issues.',
     intro: [
       'Not every vehicle problem requires towing. Sometimes a simple roadside solution can get you moving again. Our **roadside assistance in Dubai** helps drivers dealing with common problems such as flat tires, battery issues, vehicle starting problems, and other unexpected situations on the road.',
       'When the problem cannot be resolved safely at the roadside, towing assistance can also be arranged to transport your vehicle to a suitable location.',
@@ -131,10 +129,9 @@ const serviceContent = {
         ],
       },
       {
-        heading: '24/7 Roadside Assistance in Dubai',
+        heading: 'Roadside Assistance Availability',
         paragraphs: [
-          'Vehicle problems do not always happen during convenient hours. Our roadside assistance is available 24/7 so drivers can contact us when they need help.',
-          'Whether you are dealing with a breakdown during the day or a vehicle problem late at night, you can contact our team for assistance.',
+          'Contact our team with your location and vehicle details to confirm current roadside assistance availability.',
         ],
       },
       {
@@ -147,7 +144,6 @@ const serviceContent = {
     primaryKeyword: 'roadside assistance Dubai',
     semanticKeywords: [
       'roadside assistance service Dubai',
-      '24/7 roadside assistance Dubai',
       'car breakdown assistance Dubai',
       'emergency roadside assistance Dubai',
     ],
@@ -160,11 +156,11 @@ const serviceContent = {
     seoTitle: 'Car Breakdown Service in Dubai | Usama Car Towing',
     shortDesc: "We'll get your battery back to life",
     longDesc:
-      'A dead battery can happen anytime. Our team arrives with professional jump-start equipment to get your car running again in minutes, or advise on a replacement if needed.',
-    features: ['Fast on-site service', 'Battery health check', 'All vehicle types'],
+      'If your car will not start because of a discharged battery, contact us to discuss jump-start assistance.',
+    features: ['Jump-start assistance', 'Contact us to confirm vehicle compatibility'],
     h1: 'Car Battery Jump Start Service in Dubai',
     metaDescription:
-      'Car battery jump start service in Dubai. Dead car battery? Our team arrives with professional equipment to get your vehicle started again quickly.',
+      'Car battery jump-start assistance in Dubai. Contact our team with your vehicle details.',
     intro: [
       'A dead battery can leave your car stranded even when there is nothing else wrong with the vehicle. Our **car battery jump start service in Dubai** helps drivers whose vehicles will not start because of a discharged battery.',
       'Instead of attempting an unsafe jump start yourself, professional roadside assistance can help assess the situation and provide the appropriate assistance.',
@@ -230,7 +226,7 @@ const serviceContent = {
     seoTitle: 'Commercial Vehicle Towing servicein Dubai | Usama Car Towing',
     shortDesc: 'Trusted towing solutions for commercial vehicles.',
     longDesc:
-      'When you need to move your commercial vehicles or heavy equipment from one site to another, our professional team provides safe, reliable, and efficient transportation services. We handle the loading, transportation, and delivery of your vehicles with care, ensuring they reach the destination safely and on time.',
+      'Contact us with the vehicle type, load, pickup point, and destination to discuss commercial vehicle or equipment transport.',
     features: [
       'Site-to-site vehicle transportation',
       'Heavy commercial vehicle shifting',
@@ -370,11 +366,11 @@ const serviceContent = {
     seoTitle: 'Luxury Car Transport service in Dubai | Usama Car Towing',
     shortDesc: 'Special care for luxury and exotic cars',
     longDesc:
-      'Luxury and exotic vehicles need extra care. Our enclosed and flatbed transport options keep your car secure and scratch-free from pickup to drop-off.',
-    features: ['Enclosed transport available', 'Trained luxury-vehicle handlers', 'Fully insured'],
+      'Luxury and exotic vehicles may require a suitable transport method. Contact us to discuss your vehicle and available options.',
+    features: ['Discuss suitable transport options with our team', 'Share vehicle details when requesting assistance'],
     h1: 'Luxury Car Transport in Dubai',
     metaDescription:
-      'Luxury car transport in Dubai. Secure, careful transportation for luxury, exotic and sports vehicles using suitable equipment and trained handlers.',
+      'Luxury car transport in Dubai. Contact our team to discuss transportation options for your vehicle.',
     intro: [
       'Luxury, exotic, and high-value vehicles require careful handling during transportation. Our **luxury car transport service in Dubai** focuses on secure loading, careful handling, and appropriate transportation methods to help protect the vehicle during its journey.',
       'Whether your vehicle needs to be transported because of a breakdown, servicing, relocation, or another reason, the transportation method should match the vehicle\'s condition and requirements.',

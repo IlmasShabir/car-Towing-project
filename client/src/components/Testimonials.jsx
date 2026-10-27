@@ -4,20 +4,19 @@ import Reveal from './Reveal';
 import ReviewCard from './ReviewCard';
 import CTABanner from './CTABanner';
 import { getReviews } from '../api/reviewApi';
-import seedReviews from '../data/reviews';
 import './Testimonials.css';
 
 const Testimonials = () => {
-  const [reviews, setReviews] = useState(seedReviews);
+  const [reviews, setReviews] = useState([]);
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
     getReviews()
       .then((data) => {
-        if (data.length > 0) setReviews(data.slice(0, 5));
+        setReviews(data.slice(0, 5));
       })
       .catch(() => {
-        // Backend not reachable yet - keep showing the seed reviews
+        setReviews([]);
       });
   }, []);
 
@@ -33,7 +32,7 @@ const Testimonials = () => {
               View All Reviews →
             </Link>
           </div>
-          <div className="testimonial-card-wrapper">
+          {reviews.length > 0 && <div className="testimonial-card-wrapper">
   <ReviewCard review={reviews[index]} dark />
 
   <div className="testimonial-arrows">
@@ -57,7 +56,7 @@ const Testimonials = () => {
       →
     </button>
   </div>
-</div>
+          </div>}
         </Reveal>
 
         <Reveal direction="right" delay={150}>

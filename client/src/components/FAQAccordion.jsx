@@ -5,7 +5,7 @@ import './FAQAccordion.css';
 const faqs = [
   {
     q: 'How much does towing cost?',
-    a: 'Towing prices depend on the type of vehicle, distance and service required. Contact us for an instant quote.',
+    a: 'Towing prices depend on the type of vehicle, distance and service required. Contact us to request a quote.',
   },
   {
     q: 'How quickly can you arrive?',
@@ -13,15 +13,15 @@ const faqs = [
   },
   {
     q: 'Do you tow luxury cars?',
-    a: 'Yes, we have specialised equipment and trained staff for luxury and exotic vehicles.',
+    a: 'Contact us with your vehicle details to discuss suitable transport options.',
   },
   {
     q: 'Do you provide roadside assistance?',
     a: 'Yes — battery jump starts, flat tyre changes, and minor repairs are all available.',
   },
   {
-    q: 'Is your service available 24/7?',
-    a: 'Yes, our team is available 24 hours a day, 7 days a week.',
+    q: 'How can I check current availability?',
+    a: 'Call or message us with your location and vehicle details to confirm current availability.',
   },
   {
     q: 'Do you operate outside Dubai?',

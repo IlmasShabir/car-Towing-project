@@ -1,4 +1,3 @@
-import React from 'react';
 import Navbar from '../components/Navbar';
 import PageHeader from '../components/PageHeader';
 import ServicesGrid from '../components/ServicesGrid';
@@ -10,7 +9,7 @@ const Services = () => {
     <>
       <Helmet>
         <title>Towing & Recovery Services in Dubai | Usama Car Towing</title>
-        <meta name="description" content="Explore our full range of towing and roadside assistance services in Dubai, available 24/7." />
+        <meta name="description" content="Explore towing and roadside assistance services in Dubai." />
         <link rel="canonical" href="https://cartowingservicedubai.com/services" />
       </Helmet>
       <Navbar />

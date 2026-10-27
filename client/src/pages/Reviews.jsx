@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import PageHeader from '../components/PageHeader';
 import Reveal from '../components/Reveal';
@@ -6,12 +6,11 @@ import ReviewCard from '../components/ReviewCard';
 import ReviewForm from '../components/ReviewForm';
 import Footer from '../components/Footer';
 import { getReviews } from '../api/reviewApi';
-import seedReviews from '../data/reviews';
 import { Helmet } from 'react-helmet-async';
 import './Reviews.css';
 
 const Reviews = () => {
-  const [reviews, setReviews] = useState(seedReviews);
+  const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const [page, setPage] = useState(1);
@@ -20,14 +19,11 @@ const Reviews = () => {
   useEffect(() => {
     getReviews()
       .then((data) => {
-        // Show live submitted reviews first, keep the seed reviews after them
-        // so the page never looks empty while the database is still new.
-        setReviews(data.length > 0 ? data : seedReviews);
+        setReviews(data);
         setPage(1);
       })
       .catch(() => {
-        // Backend not reachable yet (e.g. still in local dev) - fall back to seed data
-        setReviews(seedReviews);
+        setReviews([]);
         setPage(1);
       })
       .finally(() => setLoading(false));
@@ -41,7 +37,7 @@ const Reviews = () => {
 
   const avgRating = reviews.length
     ? (reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length).toFixed(1)
-    : '5.0';
+    : null;
 
   const pageCount = Math.max(1, Math.ceil(reviews.length / perPage));
   const safePage = Math.min(page, pageCount);
@@ -51,14 +47,14 @@ const Reviews = () => {
     <>
       <Helmet>
         <title>Best Towing Services in Dubai | Usama Car Towing</title>
-        <meta name="description" content="Read reviews from our customers about Usama Car Towing's fast, reliable 24/7 towing service in Dubai." />
+        <meta name="description" content="Read customer reviews about Usama Car Towing in Dubai." />
         <link rel="canonical" href="https://cartowingservicedubai.com/reviews" />
       </Helmet>
       <Navbar />
       <PageHeader title="WHAT OUR CLIENTS SAY" crumb="Reviews" />
 
       <section className="reviews-section">
-        <Reveal className="reviews-summary">
+        {reviews.length > 0 && <Reveal className="reviews-summary">
           <div>
             <span className="reviews-score">{avgRating}</span>
             <span className="reviews-stars">★★★★★</span>
@@ -69,10 +65,12 @@ const Reviews = () => {
           <button className="reviews-write-btn" onClick={() => setShowForm(true)}>
             ✎ Write a Review
           </button>
-        </Reveal>
+        </Reveal>}
 
         {loading ? (
           <p className="reviews-loading">Loading reviews...</p>
+        ) : reviews.length === 0 ? (
+          <p className="reviews-loading">No customer reviews are available yet.</p>
         ) : (
           <div className="reviews-grid">
             {pageReviews.map((review, i) => (
